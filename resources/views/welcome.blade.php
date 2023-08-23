@@ -36,9 +36,9 @@
         <!-- main -->
         <div class="absolute inset-0 flex items-center justify-center max-w-2xl mx-auto lg:px-0 px-4">
             <div class="bg-white rounded-xl py-5 px-8 w-full">
-                <div class="flex flex-col items-center gap-y-8 w-full">
+                <div class="flex flex-col items-center gap-y-6 w-full">
                     <!-- if selected stars are 4 less than 4 stars and give feedback then hide this -->
-                    <div class=" flex flex-col items-center gap-y-8 w-full">
+                    <div class=" flex flex-col items-center gap-y-6 w-full">
                         <div>
                             <h1 class="text-2xl">Thank you for your Order</h1>
                         </div>
@@ -171,7 +171,81 @@
                         </div>
 
                     </div>
+                    <!-- if you selected all 5 stars then show this -->
+                    <div class="w-full">
+                        <div class="text-center text-sm w-full mb-5">
+                            <h1 class="max-w-lg mx-auto">Thank you! We are so excited you came for your Benefit! You can choose to receive
+                                <strong>a same product (for free)</strong>
+                            </h1>
+                            <h1 class="w-full">when you complete these steps. We truly appreciate your review on Amazon as it helps us immensely!</h1>
+                            <h1 class="w-full">Please kindly support our growing business. <strong> Please save your review screenshot and return here to upload it </strong> , so that you can unlock your benefit! Thank you for your business and your time!</h1>
+                        </div>
+                        <!--  -->
+                        <div class="w-full text-center mb-5">
+                            <button class="mb-1 font-medium text-gray-700 text-xl bg-yellow-100 py-3 px-5 rounded-full border-4 border-yellow-400 hover:bg-yellow-200">Leave Feedback</button>
+                            <p class="text-xs text-yellow-500">Leave Feedback for the products on Amazon and claim all offers!</p>
+                        </div>
+                        <!--  -->
+                        <div class="w-full">
+                            <div class="relative inline-flex items-center justify-center space-x-2 w-full">
+                                <input type="file" id="fileInput" class="hidden" accept="image/*">
+                                <button id="uploadButton" class="flex items-center px-6 py-3 border rounded-lg bg-yellow-500 text-white hover:bg-yellow-600 focus:outline-none">
+                                    <svg class="w-5 h-5 mr-1" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 312.602 312.602" xml:space="preserve" fill="#000000">
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <path style="fill:#000002;" d="M251.52,137.244c-3.966,0-7.889,0.38-11.738,1.134c-1.756-47.268-40.758-85.181-88.448-85.181 c-43.856,0-80.964,32.449-87.474,75.106C28.501,129.167,0,158.201,0,193.764c0,36.106,29.374,65.48,65.48,65.48h54.782 c4.143,0,7.5-3.357,7.5-7.5c0-4.143-3.357-7.5-7.5-7.5H65.48c-27.835,0-50.48-22.645-50.48-50.48c0-27.835,22.646-50.48,50.48-50.48 c1.367,0,2.813,0.067,4.419,0.206l7.6,0.658l0.529-7.61c2.661-38.322,34.861-68.341,73.306-68.341 c40.533,0,73.51,32.977,73.51,73.51c0,1.863-0.089,3.855-0.272,6.088l-0.983,11.968l11.186-4.367 c5.356-2.091,10.99-3.151,16.747-3.151c25.409,0,46.081,20.672,46.081,46.081c0,25.408-20.672,46.08-46.081,46.08 c-0.668,0-20.608-0.04-40.467-0.08c-19.714-0.04-39.347-0.08-39.999-0.08c-4.668,0-7.108-2.248-7.254-6.681v-80.959l8.139,9.667 c2.667,3.17,7.399,3.576,10.567,0.907c3.169-2.667,3.575-7.398,0.907-10.567l-18.037-21.427c-2.272-2.699-5.537-4.247-8.958-4.247 c-3.421,0-6.686,1.548-8.957,4.247l-18.037,21.427c-2.668,3.169-2.262,7.9,0.907,10.567c1.407,1.185,3.121,1.763,4.826,1.763 c2.137,0,4.258-0.908,5.741-2.67l7.901-9.386v80.751c0,8.686,5.927,21.607,22.254,21.607c0.652,0,20.27,0.04,39.968,0.079 c19.874,0.041,39.829,0.081,40.498,0.081c33.681,0,61.081-27.4,61.081-61.08C312.602,164.644,285.201,137.244,251.52,137.244z"></path>
+                                        </g>
+                                    </svg>
+                                    <span class="uppercase">upload review screenshort</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!--  -->
+                        <div class="">
+                            <div class="flex items-center gap-2">
+                                <div class="flex items-center">
+                                    <svg class="w-3 h-3 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                    </svg>
+                                    <svg class="w-3 h-3 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                    </svg>
+                                    <svg class="w-3 h-3 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                    </svg>
+                                    <svg class="w-3 h-3 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                    </svg>
+                                    <svg class="w-3 h-3 text-yellow-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                    </svg>
+                                </div>
+                                <div class="font-medium">
+                                    <h1>Love it</h1>
+                                </div>
+                            </div>
+                            <div class="text-xs text-gray-500">
+                                <h1>March 20, 2023</h1>
+                            </div>
+                            <div class="grid md:grid-cols-4 grid-cols-1 text-[10px] text-gray-500 gap-5 items-center">
+                                <p class="capitalize ">digital storage capacity: <span>8</span></p>
+                                <p class="capitalize ">offer type: <span>with special offers</span></p>
+                                <p class="capitalize ">connectivity: <span>Wi-Fi</span></p>
+                                <p class="capitalize  text-red-800 text-xs">verified purchase</p>
+                            </div>
+                            <div class=" text-sm">
+                                <h1>You FeedBack here</h1>
+                            </div>
+                        </div>
+                        <!--  -->
+                        <div class="w-full flex items-center justify-end">
+                            <div class="bg-gray-400 p-2 px-6 rounded-lg hover:bg-gray-500 cursor-pointer">
+                                <button class="text-white uppercase">Next</button>
+                            </div>
+                        </div>
 
+                    </div>
                     <!--  -->
 
                 </div>
@@ -223,6 +297,19 @@
                 });
                 console.log(`Selected Rating: ${selectedRating}`);
             });
+        });
+
+        // upload button functionality
+        const uploadButton = document.getElementById('uploadButton');
+        const fileInput = document.getElementById('fileInput');
+
+        uploadButton.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', () => {
+            const fileName = fileInput.files[0]?.name || 'No file selected';
+            uploadButton.querySelector('span').textContent = fileName;
         });
     </script>
 </body>
