@@ -19,24 +19,10 @@
 <body class="antialiased overflow-hidden bg-gray-100">
     <div class="relative min-h-screen flex items-center justify-center">
         <img src="{{ asset('images/bridge.jpg') }}" alt="bridge" class="absolute inset-0 w-full h-full object-cover">
-        @if (Route::has('login'))
-        <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
-            @auth
-            <a href="{{ url('/admin') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"></a>
-            @else
-            <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
-
-            @if (Route::has('register'))
-            <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
-            @endif
-            @endauth
-        </div>
-        @endif
-
         <!-- main -->
-        <div class="absolute inset-0 flex items-center justify-center max-w-2xl mx-auto lg:px-0 px-4">
-            <div class="bg-white rounded-xl py-5 px-8 w-full">
-                <div class="flex flex-col items-center gap-y-6 w-full">
+        <div class="absolute inset-0 flex items-center justify-center max-w-3xl mx-auto lg:px-0 px-4">
+            <div class="bg-white rounded-xl py-5 px-8 w-full max-h-full overflow-y-auto">
+                <div class="flex flex-col items-center gap-y-6 w-full overflow-y-auto">
                     <!-- if selected stars are 4 less than 4 stars and give feedback then hide this -->
                     <div class=" flex flex-col items-center gap-y-6 w-full">
                         <div>
@@ -44,19 +30,19 @@
                         </div>
                         <!--  -->
                         <div class="grid grid-cols-3 w-full items-center bg-gray-200 rounded-full">
-                            <div class=" rounded-l-full bg-yellow-400 text-white">
-                                <h1 class="text-center md:px-2 px-0 py-4 cursor-default md:text-sm text-xs whitespace-nowrap">1. YOUR ORDER</h1>
+                            <div class="rounded-l-full bg-yellow-400 text-white">
+                                <h1 class="text-center md:px-2 px-0 py-3 cursor-default md:text-sm text-xs whitespace-nowrap">1. YOUR ORDER</h1>
                             </div>
                             <div class="hover:bg-gray-300 ">
-                                <h1 class="text-center md:px-2 px-0 py-4 cursor-default md:text-sm text-xs whitespace-nowrap">2. YOUR FEEDBACK</h1>
+                                <h1 class="text-center md:px-2 px-0 py-3 cursor-default md:text-sm text-xs whitespace-nowrap">2. YOUR FEEDBACK</h1>
                             </div>
                             <div class="hover:bg-gray-300 rounded-r-full">
-                                <h1 class="text-center md:px-2 px-0 py-4 cursor-default md:text-sm text-xs whitespace-nowrap">3. GET YOUR BENEFIT</h1>
+                                <h1 class="text-center md:px-2 px-0 py-3 cursor-default md:text-sm text-xs whitespace-nowrap">3. GET YOUR BENEFIT</h1>
                             </div>
                         </div>
                     </div>
                     <!-- if cradential match and click on next button this whole dive hidden and show next things -->
-                    <div class="hidden flex flex-col items-center gap-y-6 w-full">
+                    <div class=" flex flex-col items-center gap-y-6 w-full">
 
                         <div class="text-center w-full">
                             <h1>Please enter your Amazon ORDER ID here.</h1>
@@ -172,7 +158,7 @@
 
                     </div>
                     <!-- if you selected all 5 stars then show this -->
-                    <div class="w-full">
+                    <div class="hidden w-full">
                         <div class="text-center text-sm w-full mb-5">
                             <h1 class="max-w-lg mx-auto">Thank you! We are so excited you came for your Benefit! You can choose to receive
                                 <strong>a same product (for free)</strong>
@@ -200,6 +186,19 @@
                                     <span class="uppercase">upload review screenshort</span>
                                 </button>
                             </div>
+                            <!-- when image is upload show this otherwise hidden-->
+                            <div class="hidden w-full my-2 text-center">
+                                <div>
+                                    <h1>image name with their formate</h1>
+                                </div>
+                                <div class="flex items-center gap-2 my-2">
+                                    <div class="w-full bg-yellow-400 py-1 rounded-full"></div>
+                                    <i class="fa fa-check-circle text-gray-500 text-lg"></i>
+                                    <i class="fa fa-trash text-gray-500 text-lg cursor-pointer hover:text-gray-600"></i>
+
+                                </div>
+                            </div>
+                            <!--  -->
                         </div>
                         <!--  -->
                         <div class="">
@@ -228,7 +227,7 @@
                             <div class="text-xs text-gray-500">
                                 <h1>March 20, 2023</h1>
                             </div>
-                            <div class="grid md:grid-cols-4 grid-cols-1 text-[10px] text-gray-500 gap-5 items-center">
+                            <div class="grid md:grid-cols-4 grid-cols-1 text-[10px] text-gray-500 items-center w-full">
                                 <p class="capitalize ">digital storage capacity: <span>8</span></p>
                                 <p class="capitalize ">offer type: <span>with special offers</span></p>
                                 <p class="capitalize ">connectivity: <span>Wi-Fi</span></p>
@@ -238,16 +237,64 @@
                                 <h1>You FeedBack here</h1>
                             </div>
                         </div>
+                        <!-- it shows when you do not upload image but press next button -->
+                        <div class="hidden text-center text-red-500 text-sm my-4" id="uploadErrorMessage">
+                            <p>Please Upload Review Screenshot before proceeding to the next step. Please feel free to contact us if there are any problems. Email address: <strong>scogurei@gmail.com</strong></p>
+                        </div>
                         <!--  -->
                         <div class="w-full flex items-center justify-end">
-                            <div class="bg-gray-400 p-2 px-6 rounded-lg hover:bg-gray-500 cursor-pointer">
+                            <div class="bg-gray-400 p-2 px-6 rounded-lg hover:bg-gray-500 cursor-pointer" onclick="validateAndProceed()">
                                 <button class="text-white uppercase">Next</button>
                             </div>
                         </div>
 
                     </div>
-                    <!--  -->
+                    <!-- Get your benefits  -->
+                    <div class="hidden w-full">
+                        <div class="">
+                            <div>
+                                <h1>Please select your benefit type, for free product please enter your address to receive it.</h1>
+                            </div>
 
+                            <div class="">
+                                <input type="radio" name="free" id="free" class="cursor-pointer" onchange="toggleHiddenDiv()">
+                                <label for="free" class="capitalize font-medium cursor-pointer">same free product</label>
+                                <div class="my-2">
+                                    <img src="{{ asset('images/product.png') }}" alt="product" class="w-56">
+                                </div>
+                                <!-- if free product is selected then show this div -->
+                                <div class="hidden mb-5" id="hiddenDiv">
+                                    <div class="text-center mb-5">
+                                        <h1 class="text-sm">Please finish the address information form, we will send you the bonus quickly!</h1>
+                                    </div>
+                                    <div class="">
+                                        <input type="text" placeholder="Address Line 1" required id="address1" name="address1" class="w-full border-b-2 border-gray-200 p-2.5 focus:outline-none focus:border-yellow-300 mb-4">
+                                        <input type="text" placeholder="Address Line 2" required id="address2" name="address2" class="w-full border-b-2 border-gray-200 p-2.5 focus:outline-none focus:border-yellow-300 mb-4">
+                                        <div class="grid md:grid-cols-3 grid-cols-1 gap-2">
+                                            <input type="text" placeholder="City" required id="city" name="city" class="w-full border-b-2 border-gray-200 p-2.5 focus:outline-none focus:border-yellow-300">
+                                            <input type="text" placeholder="State" required id="State" name="State" class="w-full border-b-2 border-gray-200 p-2.5 focus:outline-none focus:border-yellow-300">
+                                            <input type="text" placeholder="Zipcode" required id="Zipcode" name="Zipcode" class="w-full border-b-2 border-gray-200 p-2.5 focus:outline-none focus:border-yellow-300">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <input type="checkbox" name="join" id="join" class="cursor-pointer">
+                                    <label for="join" class="text-gray-400 cursor-pointer">Join our Customers Club to Receive Newly Released Products, Amazon Gift Card & Lifetime Warranty</label>
+                                </div>
+                                <div class="text-center text-sm my-2">
+                                    <p>wholeheartly.com is the sole owner of information collected from its customers. We will not sell or share this information with third parties in ways different from what is disclosed in our Privacy Policy.</p>
+                                </div>
+
+                                <div class="w-full flex items-center justify-end">
+                                    <div class="bg-yellow-400 p-2 px-6 rounded-lg hover:bg-yellow-500 cursor-pointer">
+                                        <button class="text-white uppercase">submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
                 </div>
             </div>
         </div>
@@ -311,6 +358,32 @@
             const fileName = fileInput.files[0]?.name || 'No file selected';
             uploadButton.querySelector('span').textContent = fileName;
         });
+
+        // 
+        function toggleHiddenDiv() {
+            var radio = document.getElementById("free");
+            var hiddenDiv = document.getElementById("hiddenDiv");
+
+            if (radio.checked) {
+                hiddenDiv.classList.remove("hidden");
+            } else {
+                hiddenDiv.classList.add("hidden");
+            }
+        }
+
+        // 
+        function validateAndProceed() {
+            const fileInput = document.getElementById('fileInput'); // Change this ID if needed
+            const uploadErrorMessage = document.getElementById('uploadErrorMessage');
+
+            // Check if a file has been selected
+            if (!fileInput.files || fileInput.files.length === 0) {
+                uploadErrorMessage.classList.remove('hidden');
+            } else {
+                // Proceed to the next step
+                // Add your code to perform the next step here
+            }
+        }
     </script>
 </body>
 
