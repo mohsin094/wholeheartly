@@ -18,6 +18,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+
     <!-- Scripts -->
     @viteReactRefresh
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -82,6 +84,30 @@
     </div>
 
     <script>
+        // 
+        function initializeCKEditor(editorId) {
+            ClassicEditor
+                .create(document.querySelector(editorId))
+                .then(editor => {
+                    console.log(editor);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+
+        // Call the function with different IDs
+        initializeCKEditor('#editor1');
+        initializeCKEditor('#editor2');
+        initializeCKEditor('#editor3');
+        initializeCKEditor('#editor4');
+        initializeCKEditor('#editor5');
+        initializeCKEditor('#editor6');
+        // Add more instances as needed
+
+
+
+
         const DashBoard = document.getElementById('dashboard');
         const OrderInfo = document.getElementById('orderinfo');
         const Update = document.getElementById('update');

@@ -111,12 +111,12 @@
             <div class="w-full bg-white p-3 rounded-xl shadow-sm">
                 <h1 class="text-xl mb-4">Your Order design Update</h1>
                 <div class="mb-4">
-                    <label for="orderid">"Please enter your Amazon ORDER ID here"</label><br>
-                    <input type="text" id="orderid" name="orderid" placeholder="Change this text" class="w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400">
+                    <label for="orderid">"Please enter your Amazon ORDER ID here"</label><br><br>
+                    <textarea name="" id="editor1" rows="3" placeholder="Change this text" class=" w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400"></textarea>
                 </div>
                 <div class="mb-4">
-                    <label for="findid">"Use the "FIND ID" button to get it easily from your Amazon Order History page."</label><br>
-                    <input type="text" id="findid" name="findid" placeholder="Change this text" class="w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400">
+                    <label for="findid">"Use the "FIND ID" button to get it easily from your Amazon Order History page."</label><br><br>
+                    <textarea name="findid" id="editor2" rows="3" placeholder="Change this text" class=" w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400"></textarea>
                 </div>
                 <div class="flex items-center justify-end">
                     <button class="bg-yellow-400 hover:bg-yellow-500 py-2 px-4 text-white font-medium rounded-lg text-md uppercase">Update</button>
@@ -127,20 +127,21 @@
                 <h1 class="text-xl mb-4">5 Stars Feedback Update</h1>
                 <div class="mb-4">
                     <label for="orderid">"Thank you! We are so excited you came for your Benefit! You can choose to receive
-                        a same product (for free)"</label><br>
-                    <input type="text" id="freeP" name="freeP" placeholder="Change this text" class="w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400">
+                        a same product (for free)"</label><br><br>
+                    <textarea name="" id="editor3" rows="3" placeholder="Change this text" class=" w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400"></textarea>
                 </div>
                 <div class="mb-4">
-                    <label for="findid">"when you complete these steps. We truly appreciate your review on Amazon as it helps us immensely!"</label><br>
-                    <input type="text" id="findid" name="findid" placeholder="Change this text" class="w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400">
+                    <label for="">"when you complete these steps. We truly appreciate your review on Amazon as it helps us immensely!"</label><br><br>
+                    <textarea name="" id="editor4" rows="3" placeholder="Change this text" class=" w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400"></textarea>
                 </div>
                 <div class="mb-4">
-                    <label for="findid">"Please kindly support our growing business. Please save your review screenshot and return here to upload it, so that you can unlock your benefit! Thank you for your business and your time!"</label><br>
-                    <input type="text" id="review" name="review" placeholder="Change this text" class="w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400">
+                    <label for="">"Please kindly support our growing business. Please save your review screenshot and return here to upload it, so that you can unlock your benefit! Thank you for your business and your time!"</label><br><br>
+                    <textarea name="" id="editor5" rows="3" placeholder="Change this text" class=" w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400"></textarea>
+
                 </div>
                 <div class="mb-4">
-                    <label for="findid">"Leave feedback text"</label><br>
-                    <input type="text" id="Leavefb" name="Leavefb" placeholder="Change this text" class="w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400">
+                    <label for="">"Leave feedback text"</label><br><br>
+                    <textarea name="" id="editor6" rows="3" placeholder="Change this text" class=" w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400"></textarea>
                 </div>
                 <div class="flex items-center justify-end">
                     <button class="bg-yellow-400 hover:bg-yellow-500 py-2 px-4 text-white font-medium rounded-lg text-md uppercase">Update</button>
