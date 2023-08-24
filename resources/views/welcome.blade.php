@@ -24,25 +24,25 @@
             <div class="bg-white rounded-xl py-5 px-8 w-full max-h-full overflow-y-auto">
                 <div class="flex flex-col items-center gap-y-6 w-full overflow-y-auto">
                     <!-- if selected stars are 4 less than 4 stars and give feedback then hide this -->
-                    <div class=" flex flex-col items-center gap-y-6 w-full">
+                    <div class=" flex flex-col items-center gap-y-6 w-full" id="mainpage">
                         <div>
                             <h1 class="text-2xl">Thank you for your Order</h1>
                         </div>
                         <!--  -->
                         <div class="grid grid-cols-3 w-full items-center bg-gray-200 rounded-full">
-                            <div class="rounded-l-full bg-yellow-400 text-white">
+                            <div class="rounded-l-full bg-yellow-400 text-white shadow-xl" id="YOURORDER">
                                 <h1 class="text-center md:px-2 px-0 py-3 cursor-default md:text-sm text-xs whitespace-nowrap">1. YOUR ORDER</h1>
                             </div>
-                            <div class="hover:bg-gray-300 ">
+                            <div class="hover:bg-gray-300 " id="YOURFEEDBACK">
                                 <h1 class="text-center md:px-2 px-0 py-3 cursor-default md:text-sm text-xs whitespace-nowrap">2. YOUR FEEDBACK</h1>
                             </div>
-                            <div class="hover:bg-gray-300 rounded-r-full">
+                            <div class="hover:bg-gray-300 rounded-r-full" id="YOURBENEFITS">
                                 <h1 class="text-center md:px-2 px-0 py-3 cursor-default md:text-sm text-xs whitespace-nowrap">3. GET YOUR BENEFIT</h1>
                             </div>
                         </div>
                     </div>
                     <!-- if cradential match and click on next button this whole dive hidden and show next things -->
-                    <div class=" flex flex-col items-center gap-y-6 w-full">
+                    <div class=" flex flex-col items-center gap-y-6 w-full" id="yourorder1">
 
                         <div class="text-center w-full">
                             <h1>Please enter your Amazon ORDER ID here.</h1>
@@ -60,16 +60,20 @@
                                     <a href="https://www.amazon.com/ap/signin?_encoding=UTF8&accountStatusPolicy=P1&openid.assoc_handle=usflex&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.mode=checkid_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.ns.pape=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fpape%2F1.0&openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fgp%2Fcss%2Forder-history%3Fie%3DUTF8%26amp%253Bref_%3Dnav_nav_orders_first&pageId=webcs-yourorder&showRmrMe=1" class="text-sm text-white uppercase">Find ID</a>
                                 </div>
                             </div>
+                            <!-- error -->
+                            <div class="hidden w-full" id="yourorderinputerror">
+                                <h1 class="text-sm text-red-500 text-start">Please fill all fields!</h1>
+                            </div>
                             <!--  -->
                             <div class="w-full flex items-center justify-end">
-                                <div class="bg-yellow-400 p-2 px-6 rounded-lg hover:bg-yellow-500 cursor-pointer">
+                                <div class="bg-yellow-400 p-2 px-6 rounded-lg hover:bg-yellow-500 cursor-pointer" onclick="ToRatingPage(event)">
                                     <button class="text-white uppercase">Next</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <!-- then show this div -->
-                    <div class="hidden">
+                    <div class="hidden" id="ratingpage">
                         <div class="grid md:grid-cols-2 grid-cols-1 gap-x-4 gap-y-8">
                             <!--  -->
                             <div class="">
@@ -118,31 +122,35 @@
                         </div>
                         <!-- button -->
                         <div class="w-full flex items-center justify-end my-4">
-                            <div class="bg-yellow-400 p-2 px-6 rounded-lg hover:bg-yellow-500 cursor-pointer">
+                            <div class="bg-yellow-400 p-2 px-6 rounded-lg hover:bg-yellow-500 cursor-pointer" onclick="Less4Stars(event)">
                                 <button class="text-white uppercase">Next</button>
                             </div>
                         </div>
                         <!--  -->
                     </div>
                     <!-- if selected stars are 4 less than 4 stars then it shows  -->
-                    <div class="hidden w-full">
+                    <div class="hidden w-full" id="less4">
                         <div class="w-full">
                             <div class="text-2xl mb-4">
                                 <h1>*Why is this item short of your expectations?</h1>
                                 <h1>*How would you like us to improve?</h1>
                             </div>
-                            <div class="mb-8">
-                                <textarea name="message" id="message" rows="3" class="w-full border-b border-gray-400 focus:outline-none focus:border-yellow-300"></textarea>
+                            <div class="mb-4">
+                                <textarea name="message" id="message" rows="3" required class="w-full border-b border-gray-400 focus:outline-none focus:border-yellow-300"></textarea>
+                            </div>
+                            <!-- error -->
+                            <div class="hidden w-full mb4" id="textareafill">
+                                <h1 class="text-sm text-red-500 text-start">Please Give FeedBack!</h1>
                             </div>
                             <div class="w-full flex items-center justify-end mb-4">
-                                <div class="bg-yellow-400 p-2 px-6 rounded-lg hover:bg-yellow-500 cursor-pointer">
+                                <div class="bg-yellow-400 p-2 px-6 rounded-lg hover:bg-yellow-500 cursor-pointer" onclick="givefbless4stars(event)">
                                     <button class="text-white uppercase">Next</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- if selected stars are 4 less than 4 stars and give feedback everything is hide only shows this -->
-                    <div class="hidden w-full">
+                    <div class="hidden w-full" id="less4givefb">
                         <div class="flex flex-col items-center gap-y-8 w-full">
                             <i class="fa fa-check-circle text-9xl text-yellow-500" aria-hidden="true"></i>
                             <div class="flex flex-col gap-4 w-full text-lg">
@@ -158,7 +166,7 @@
 
                     </div>
                     <!-- if you selected all 5 stars then show this -->
-                    <div class="hidden w-full">
+                    <div class="hidden w-full" id="stars5">
                         <div class="text-center text-sm w-full mb-5">
                             <h1 class="max-w-lg mx-auto">Thank you! We are so excited you came for your Benefit! You can choose to receive
                                 <strong>a same product (for free)</strong>
@@ -305,6 +313,125 @@
 
     <!-- script -->
     <script>
+        const ToRatingPage = (e) => {
+            e.preventDefault();
+
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const orderIdInput = document.getElementById('orderId');
+
+            const nameValue = nameInput.value.trim();
+            const emailValue = emailInput.value.trim();
+            const orderIdValue = orderIdInput.value.trim();
+
+            if (nameValue !== "" && emailValue !== "" && orderIdValue !== "") {
+                const yourOrder1 = document.getElementById('yourorder1');
+                const RatingPage = document.getElementById('ratingpage');
+
+                yourOrder1.classList.add('hidden');
+                RatingPage.classList.remove('hidden');
+            } else {
+                const errorMessage = document.getElementById('yourorderinputerror');
+                errorMessage.classList.remove('hidden')
+                console.log("Please fill in all required fields.");
+            }
+        };
+
+
+        // 
+        const Less4Stars = (e) => {
+            e.preventDefault();
+
+            console.log("Less4Stars function called.");
+
+            const stars = document.querySelectorAll('.star');
+            let selectedRating = 0;
+
+            stars.forEach(star => {
+                if (star.classList.contains('selected')) {
+                    selectedRating++;
+                }
+            });
+
+            const radioInputs = document.querySelectorAll('input[name="usage"]');
+            let isRadioSelected = false;
+
+            radioInputs.forEach(input => {
+                if (input.checked) {
+                    isRadioSelected = true;
+                }
+            });
+
+            console.log("Selected Rating:", selectedRating);
+            console.log("Radio Selected:", isRadioSelected);
+
+            const less4Section = document.getElementById('less4');
+            const ratingPage = document.getElementById('ratingpage');
+            const YOURORDER = document.getElementById('YOURORDER');
+            const YOURFEEDBACK = document.getElementById('YOURFEEDBACK');
+            const stars5 = document.getElementById('stars5');
+
+            if (selectedRating <= 4 && isRadioSelected) {
+                console.log("Showing less4Section");
+                ratingPage.classList.add('hidden');
+                less4Section.classList.remove('hidden');
+                stars5.classList.add('hidden');
+                YOURORDER.classList.remove('bg-yellow-400', 'text-white', 'shadow-xl');
+                YOURORDER.classList.add('hover:bg-gray-300');
+                YOURFEEDBACK.classList.add('bg-yellow-400', 'text-white', 'shadow-xl');
+                YOURFEEDBACK.classList.remove('hover:bg-gray-300');
+            } else if (selectedRating === 5 && isRadioSelected) {
+                console.log("Showing stars5 Section");
+                ratingPage.classList.add('hidden');
+                less4Section.classList.add('hidden');
+                stars5.classList.remove('hidden');
+                YOURORDER.classList.remove('bg-yellow-400', 'text-white', 'shadow-xl');
+                YOURORDER.classList.add('hover:bg-gray-300');
+                YOURFEEDBACK.classList.add('bg-yellow-400', 'text-white', 'shadow-xl');
+                YOURFEEDBACK.classList.remove('hover:bg-gray-300');
+            } else {
+                console.log("Default action or feedback goes here.");
+            }
+        };
+
+
+
+
+
+
+
+
+
+        // 
+        const givefbless4stars = (e) => {
+            e.preventDefault();
+
+            const messageTextarea = document.getElementById('message');
+            const messageValue = messageTextarea.value.trim();
+
+            if (messageValue !== "") {
+                const less4Section = document.getElementById('less4');
+                const less4GiveFbSection = document.getElementById('less4givefb');
+                const mainPage = document.getElementById('mainpage');
+
+                less4Section.classList.add('hidden');
+                mainPage.classList.add('hidden');
+                less4GiveFbSection.classList.remove('hidden');
+            } else {
+                // Optionally, you can display an error message or perform other actions
+                const textareaFill = document.getElementById('textareafill');
+                textareaFill.classList.remove('hidden')
+                console.log("Please provide feedback in the textarea.");
+            }
+        };
+
+
+
+
+
+
+
+
         const ratingIcons = document.querySelectorAll('.star');
         let hoveredRating = 0;
         let selectedRating = 0;
