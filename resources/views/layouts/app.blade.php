@@ -17,6 +17,7 @@
     <!--  -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 
@@ -81,10 +82,11 @@
         <main class="">
             @yield('content')
         </main>
+        @yield('script')
     </div>
 
     <script>
-        // 
+        //
         function initializeCKEditor(editorId) {
             ClassicEditor
                 .create(document.querySelector(editorId))
@@ -112,78 +114,6 @@
         const OrderInfo = document.getElementById('orderinfo');
         const Update = document.getElementById('update');
 
-        const InfoSec = document.getElementById('infosection');
-        const UpdateSec = document.getElementById('updatesection');
-        const OrderSec = document.getElementById('ordersection');
-
-        const dashboard = () => {
-            InfoSec.classList.remove('hidden');
-            UpdateSec.classList.add('hidden');
-            OrderSec.classList.add('hidden');
-
-            DashBoard.classList.add('bg-yellow-400', 'text-white');
-            OrderInfo.classList.add('hover:bg-yellow-400', 'hover:text-white');
-            Update.classList.add('hover:bg-yellow-400', 'hover:text-white');
-
-            DashBoard.classList.remove('hover:bg-yellow-400', 'hover:text-white');
-            OrderInfo.classList.remove('bg-yellow-400', 'text-white');
-
-            Update.classList.remove('bg-yellow-400', 'text-white');
-            Update.classList.add('hover:bg-yellow-400', 'hover:text-white');
-        }
-
-        const orderinfo = () => {
-            InfoSec.classList.add('hidden');
-            UpdateSec.classList.add('hidden');
-            OrderSec.classList.remove('hidden');
-
-            DashBoard.classList.remove('bg-yellow-400', 'text-white');
-            DashBoard.classList.add('hover:bg-yellow-400', 'hover:text-white');
-            OrderInfo.classList.add('bg-yellow-400', 'text-white');
-
-            OrderInfo.classList.remove('hover:bg-yellow-400', 'hover:text-white');
-
-            Update.classList.remove('bg-yellow-400', 'text-white');
-            Update.classList.add('hover:bg-yellow-400', 'hover:text-white');
-        }
-        const update = () => {
-            InfoSec.classList.add('hidden');
-            UpdateSec.classList.remove('hidden');
-            OrderSec.classList.add('hidden');
-
-            DashBoard.classList.remove('bg-yellow-400', 'text-white');
-            DashBoard.classList.add('hover:bg-yellow-400', 'hover:text-white');
-            OrderInfo.classList.remove('bg-yellow-400', 'text-white');
-
-            OrderInfo.classList.add('hover:bg-yellow-400', 'hover:text-white');
-
-            Update.classList.add('bg-yellow-400', 'text-white');
-            Update.classList.remove('hover:bg-yellow-400', 'hover:text-white');
-
-        }
-
-        // modal
-
-        const openModalBtn = document.getElementById('openModalBtn');
-        const closeModalBtn = document.querySelector('[data-modal-hide="defaultModal"]');
-        const modal = document.getElementById('defaultModal');
-        const editIcon = document.getElementById('editIcon');
-
-        // Function to open the modal
-        const openModal = () => {
-            modal.classList.remove('hidden');
-        };
-
-        // Function to close the modal
-        const closeModal = () => {
-            modal.classList.add('hidden');
-        };
-
-        // Add event listeners
-        openModalBtn.addEventListener('click', openModal);
-        closeModalBtn.addEventListener('click', closeModal);
-        editIcon.addEventListener('click', openModal);
-    </script>
 </body>
 
 </html>

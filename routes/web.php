@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,3 +22,7 @@ Route::post('/feedback', [App\Http\Controllers\FeedbackController::class, 'addFe
 Auth::routes();
 
 Route::get('/admin', [App\Http\Controllers\DashboardController::class, 'index'])->name('admin');
+Route::post('/order/add', [OrderController::class, 'addOrder'])->name('addOrder');
+Route::post('/order/update', [OrderController::class, 'updateOrder']);
+Route::post('/order/delete', [OrderController::class, 'deleteOrder']);
+

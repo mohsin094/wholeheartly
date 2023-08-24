@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <!-- if cradential match and click on next button this whole dive hidden and show next things -->
-                    <form action="{{route('addFeedback')}}" method="POST" class="w-full flex flex-col items-center gap-6" id="myForm">
+                    <form action="{{route('addOrder')}}" method="POST" class="w-full flex flex-col items-center gap-6" id="myForm">
                         @csrf
 
                         <input type="hidden" name="rating" id="rating" value="">
@@ -61,7 +61,7 @@
                                     <input type="text" placeholder="Your Amazon Order ID" required id="orderId" name="order_id" class="w-full border-b-2 border-gray-200 p-2.5 focus:outline-none focus:border-yellow-300">
                                 </div>
                                 <div class="bg-gray-500 py-1 px-2 rounded-lg ml-2 w-24 text-center">
-                                    <a href="https://www.amazon.com/ap/signin?_encoding=UTF8&accountStatusPolicy=P1&openid.assoc_handle=usflex&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.mode=checkid_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.ns.pape=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fpape%2F1.0&openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fgp%2Fcss%2Forder-history%3Fie%3DUTF8%26amp%253Bref_%3Dnav_nav_orders_first&pageId=webcs-yourorder&showRmrMe=1" class="text-sm text-white uppercase">Find ID</a>
+                                    <a href="https://www.amazon.com/gp/css/order-history?ie=UTF8&amp;ref_=nav_nav_orders_first" target="_blank" class="text-sm text-white uppercase">Find ID</a>
                                 </div>
                             </div>
                             <!-- error -->
@@ -189,7 +189,7 @@
                             <!--  -->
                             <div class="w-full">
                                 <div class="relative inline-flex items-center justify-center space-x-2 w-full">
-                                    <input type="file" id="fileInput" class="hidden" accept="image/*" multiple>
+                                    <input type="file" id="fileInput" class="hidden" name="images[]" accept="image/*" multiple>
                                     <button id="uploadButton" class="flex items-center px-6 py-3 border rounded-lg bg-yellow-500 text-white hover:bg-yellow-600 focus:outline-none">
                                         <svg class="w-5 h-5 mr-1" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 312.602 312.602" xml:space="preserve" fill="#000000">
                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -583,6 +583,7 @@
         }
 
         function submitForm() {
+            // alert('d');
             event.preventDefault();
 
             const formData = new FormData(document.getElementById('myForm'));

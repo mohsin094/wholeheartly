@@ -4,12 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\FeedbackRequest;
 use App\Models\Feedback;
+use App\Models\Media;
 use Illuminate\Http\Request;
 
 class FeedbackController extends Controller
 {
     public function addFeedback(FeedbackRequest $request){
-        Feedback::create($request->all());
+        $feedback = Feedback::create($request->except(['image']));
+
+
+        if($request->has('images') && $feedback){
+            foreach ($request->images as $key => $image) {
+
+                $filename = time() . '_' . $image->getClientOriginalName();
+                $path = $image->storeAs('images', $filename, 'public');
+
+                $med = Media::create([
+                    'feedback_id' => $feedback->id,
+                    'image' => $path
+                ]);
+            }
+
+        }
+
+
         return response()->json(['message' => 'Form submitted successfully']);
     }
 }

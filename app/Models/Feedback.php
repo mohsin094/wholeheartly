@@ -17,4 +17,8 @@ class Feedback extends Model
         'rating',
         'comment'
     ];
+
+    public function images(){
+        return $this->hasMany(Media::class);
+    }
 }
