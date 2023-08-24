@@ -182,7 +182,7 @@
                         <!--  -->
                         <div class="w-full">
                             <div class="relative inline-flex items-center justify-center space-x-2 w-full">
-                                <input type="file" id="fileInput" class="hidden" accept="image/*">
+                                <input type="file" id="fileInput" class="hidden" accept="image/*" multiple>
                                 <button id="uploadButton" class="flex items-center px-6 py-3 border rounded-lg bg-yellow-500 text-white hover:bg-yellow-600 focus:outline-none">
                                     <svg class="w-5 h-5 mr-1" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 312.602 312.602" xml:space="preserve" fill="#000000">
                                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -195,17 +195,18 @@
                                 </button>
                             </div>
                             <!-- when image is upload show this otherwise hidden-->
-                            <div class="hidden w-full my-2 text-center">
-                                <div>
-                                    <h1>image name with their formate</h1>
+                            <div class="hidden w-full my-2 text-center" id="uploadimagesection">
+                                <!-- <div>
+                                    <h1 id="imagename">Image Name with Their Format</h1>
                                 </div>
                                 <div class="flex items-center gap-2 my-2">
                                     <div class="w-full bg-yellow-400 py-1 rounded-full"></div>
                                     <i class="fa fa-check-circle text-gray-500 text-lg"></i>
-                                    <i class="fa fa-trash text-gray-500 text-lg cursor-pointer hover:text-gray-600"></i>
-
-                                </div>
+                                    <i class="fa fa-trash text-gray-500 text-lg cursor-pointer hover:text-gray-600" onclick="deleteImage()"></i>
+                                </div> -->
+                                <div class="grid gap-2" id="uploadedImages"></div>
                             </div>
+
                             <!--  -->
                         </div>
                         <!--  -->
@@ -251,14 +252,14 @@
                         </div>
                         <!--  -->
                         <div class="w-full flex items-center justify-end">
-                            <div class="bg-gray-400 p-2 px-6 rounded-lg hover:bg-gray-500 cursor-pointer" onclick="validateAndProceed()">
+                            <div class="bg-gray-400 p-2 px-6 rounded-lg hover:bg-gray-500 cursor-pointer nextbutton" onclick="validateAndProceed()">
                                 <button class="text-white uppercase">Next</button>
                             </div>
                         </div>
 
                     </div>
                     <!-- Get your benefits  -->
-                    <div class="hidden w-full">
+                    <div class="hidden w-full" id="benefitsection">
                         <div class="">
                             <div>
                                 <h1>Please select your benefit type, for free product please enter your address to receive it.</h1>
@@ -313,6 +314,7 @@
 
     <!-- script -->
     <script>
+        // 
         const ToRatingPage = (e) => {
             e.preventDefault();
 
@@ -404,16 +406,6 @@
             }
         };
 
-
-
-
-
-
-
-
-
-
-
         // 
         const givefbless4stars = (e) => {
             e.preventDefault();
@@ -436,14 +428,7 @@
                 console.log("Please provide feedback in the textarea.");
             }
         };
-
-
-
-
-
-
-
-
+        // 
         const ratingIcons = document.querySelectorAll('.star');
         let hoveredRating = 0;
         let selectedRating = 0;
@@ -485,18 +470,7 @@
             });
         });
 
-        // upload button functionality
-        const uploadButton = document.getElementById('uploadButton');
-        const fileInput = document.getElementById('fileInput');
 
-        uploadButton.addEventListener('click', () => {
-            fileInput.click();
-        });
-
-        fileInput.addEventListener('change', () => {
-            const fileName = fileInput.files[0]?.name || 'No file selected';
-            uploadButton.querySelector('span').textContent = fileName;
-        });
 
         // 
         function toggleHiddenDiv() {
@@ -511,16 +485,78 @@
         }
 
         // 
-        function validateAndProceed() {
-            const fileInput = document.getElementById('fileInput'); // Change this ID if needed
-            const uploadErrorMessage = document.getElementById('uploadErrorMessage');
+        // JavaScript code
 
-            // Check if a file has been selected
-            if (!fileInput.files || fileInput.files.length === 0) {
+        const uploadButton = document.getElementById('uploadButton');
+        const fileInput = document.getElementById('fileInput');
+        const uploadErrorMessage = document.getElementById('uploadErrorMessage');
+        const uploadImageSection = document.getElementById('uploadimagesection');
+        const uploadedImagesContainer = document.getElementById('uploadedImages');
+        const nextButton = document.querySelector('.nextbutton');
+        const stars5Section = document.getElementById('stars5');
+        const benefitSection = document.getElementById('benefitsection');
+        const YOURORDER = document.getElementById('YOURORDER');
+        const YOURFEEDBACK = document.getElementById('YOURFEEDBACK');
+        const YOURBENEFITS = document.getElementById('YOURBENEFITS');
+
+        uploadButton.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length === 0) {
+                console.log('No files selected');
+                uploadErrorMessage.classList.remove('hidden');
+                uploadImageSection.classList.add('hidden');
+                nextButton.classList.add('hidden');
+            } else {
+                console.log('Files selected');
+                uploadErrorMessage.classList.add('hidden');
+                uploadImageSection.classList.remove('hidden');
+                nextButton.classList.remove('hidden', 'bg-gray-400', 'hover:bg-gray-500', 'cursor-pointer');
+                nextButton.classList.add('bg-yellow-400', 'hover:bg-yellow-500', 'cursor-pointer');
+
+                uploadedImagesContainer.innerHTML = '';
+
+                for (const file of fileInput.files) {
+                    const uploadedFileName = file.name;
+                    const uploadedFileFormat = uploadedFileName.substring(uploadedFileName.lastIndexOf('.') + 1);
+
+                    const imageContainer = document.createElement('div');
+                    imageContainer.className = 'flex items-center gap-2 my-2';
+                    imageContainer.innerHTML = `
+                <div class="w-full bg-yellow-400 py-1 rounded-full"></div>
+                <i class="fa fa-check-circle text-gray-500 text-lg"></i>
+                <h1>${uploadedFileName} (${uploadedFileFormat.toUpperCase()})</h1>
+                <i class="fa fa-trash text-gray-500 text-lg cursor-pointer hover:text-gray-600" onclick="deleteImage(this)"></i>
+            `;
+
+                    uploadedImagesContainer.appendChild(imageContainer);
+                }
+            }
+        });
+
+        const deleteImage = (deleteIcon) => {
+            const imageContainer = deleteIcon.parentNode;
+            imageContainer.remove();
+        };
+
+        function validateAndProceed() {
+            if (fileInput.files.length === 0) {
+                console.log('No files selected when proceeding');
                 uploadErrorMessage.classList.remove('hidden');
             } else {
-                // Proceed to the next step
-                // Add your code to perform the next step here
+                console.log('Proceeding to the next step');
+                uploadErrorMessage.classList.add('hidden');
+
+                // Hide stars5Section and show benefitSection using Tailwind CSS classes
+                stars5Section.classList.add('hidden');
+                benefitSection.classList.remove('hidden');
+
+                YOURBENEFITS.classList.add('bg-yellow-400', 'text-white', 'shadow-xl');
+                YOURBENEFITS.classList.remove('hover:bg-gray-300');
+                YOURFEEDBACK.classList.remove('bg-yellow-400', 'text-white', 'shadow-xl');
+                YOURFEEDBACK.classList.add('hover:bg-gray-300');
             }
         }
     </script>
