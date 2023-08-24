@@ -82,6 +82,84 @@
             @yield('content')
         </main>
     </div>
+
+    <script>
+        const DashBoard = document.getElementById('dashboard');
+        const OrderInfo = document.getElementById('orderinfo');
+        const Update = document.getElementById('update');
+
+        const InfoSec = document.getElementById('infosection');
+        const UpdateSec = document.getElementById('updatesection');
+        const OrderSec = document.getElementById('ordersection');
+
+        const dashboard = () => {
+            InfoSec.classList.remove('hidden');
+            UpdateSec.classList.add('hidden');
+            OrderSec.classList.add('hidden');
+
+            DashBoard.classList.add('bg-yellow-400', 'text-white');
+            OrderInfo.classList.add('hover:bg-yellow-400', 'hover:text-white');
+            Update.classList.add('hover:bg-yellow-400', 'hover:text-white');
+
+            DashBoard.classList.remove('hover:bg-yellow-400', 'hover:text-white');
+            OrderInfo.classList.remove('bg-yellow-400', 'text-white');
+
+            Update.classList.remove('bg-yellow-400', 'text-white');
+            Update.classList.add('hover:bg-yellow-400', 'hover:text-white');
+        }
+
+        const orderinfo = () => {
+            InfoSec.classList.add('hidden');
+            UpdateSec.classList.add('hidden');
+            OrderSec.classList.remove('hidden');
+
+            DashBoard.classList.remove('bg-yellow-400', 'text-white');
+            DashBoard.classList.add('hover:bg-yellow-400', 'hover:text-white');
+            OrderInfo.classList.add('bg-yellow-400', 'text-white');
+
+            OrderInfo.classList.remove('hover:bg-yellow-400', 'hover:text-white');
+
+            Update.classList.remove('bg-yellow-400', 'text-white');
+            Update.classList.add('hover:bg-yellow-400', 'hover:text-white');
+        }
+        const update = () => {
+            InfoSec.classList.add('hidden');
+            UpdateSec.classList.remove('hidden');
+            OrderSec.classList.add('hidden');
+
+            DashBoard.classList.remove('bg-yellow-400', 'text-white');
+            DashBoard.classList.add('hover:bg-yellow-400', 'hover:text-white');
+            OrderInfo.classList.remove('bg-yellow-400', 'text-white');
+
+            OrderInfo.classList.add('hover:bg-yellow-400', 'hover:text-white');
+
+            Update.classList.add('bg-yellow-400', 'text-white');
+            Update.classList.remove('hover:bg-yellow-400', 'hover:text-white');
+
+        }
+
+        // modal
+
+        const openModalBtn = document.getElementById('openModalBtn');
+        const closeModalBtn = document.querySelector('[data-modal-hide="defaultModal"]');
+        const modal = document.getElementById('defaultModal');
+        const editIcon = document.getElementById('editIcon');
+
+        // Function to open the modal
+        const openModal = () => {
+            modal.classList.remove('hidden');
+        };
+
+        // Function to close the modal
+        const closeModal = () => {
+            modal.classList.add('hidden');
+        };
+
+        // Add event listeners
+        openModalBtn.addEventListener('click', openModal);
+        closeModalBtn.addEventListener('click', closeModal);
+        editIcon.addEventListener('click', openModal);
+    </script>
 </body>
 
 </html>
