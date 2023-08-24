@@ -339,20 +339,30 @@
 
 
         // 
+        const stars = document.querySelectorAll('.star');
+
+        // Add an event listener to each star element
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                const rating = parseInt(star.getAttribute('data-rating'));
+
+                // Remove the 'selected' class from all stars
+                stars.forEach(s => s.classList.remove('selected'));
+
+                // Add the 'selected' class to the clicked star and all previous stars
+                for (let i = 0; i < rating; i++) {
+                    stars[i].classList.add('selected');
+                }
+            });
+        });
+
+
         const Less4Stars = (e) => {
             e.preventDefault();
 
             console.log("Less4Stars function called.");
 
-            const stars = document.querySelectorAll('.star');
-            let selectedRating = 0;
-
-            stars.forEach(star => {
-                if (star.classList.contains('selected')) {
-                    selectedRating++;
-                }
-            });
-
+            const selectedRating = document.querySelectorAll('.star.selected').length;
             const radioInputs = document.querySelectorAll('input[name="usage"]');
             let isRadioSelected = false;
 
@@ -371,7 +381,7 @@
             const YOURFEEDBACK = document.getElementById('YOURFEEDBACK');
             const stars5 = document.getElementById('stars5');
 
-            if (selectedRating <= 4 && isRadioSelected) {
+            if (selectedRating < 5 && isRadioSelected) {
                 console.log("Showing less4Section");
                 ratingPage.classList.add('hidden');
                 less4Section.classList.remove('hidden');
@@ -393,6 +403,8 @@
                 console.log("Default action or feedback goes here.");
             }
         };
+
+
 
 
 
