@@ -42,6 +42,10 @@
                         </div>
                     </div>
                     <!-- if cradential match and click on next button this whole dive hidden and show next things -->
+                    <form action="{{route('addFeedback')}}" method="POST" class="w-full flex flex-col items-center gap-6" id="myForm">
+                        @csrf
+
+                    <input type="hidden" name="rating" id="rating" value="">
                     <div class=" flex flex-col items-center gap-y-6 w-full" id="yourorder1">
 
                         <div class="text-center w-full">
@@ -49,12 +53,12 @@
                             <h1 class="">Use the <strong>"FIND ID"</strong> button to get it easily from your Amazon Order History page.</h1>
                         </div>
                         <!--  -->
-                        <form action="" class="w-full flex flex-col items-center gap-6">
+                        {{-- <form action="" class="w-full flex flex-col items-center gap-6"> --}}
                             <input type="text" placeholder="Your Name" required id="name" name="name" class="w-full border-b-2 border-gray-200 p-2.5 focus:outline-none focus:border-yellow-300">
                             <input type="email" placeholder="Your Email" required id="email" name="email" class="w-full border-b-2 border-gray-200 p-2.5 focus:outline-none focus:border-yellow-300">
                             <div class="flex items-center w-full">
                                 <div class="w-full">
-                                    <input type="text" placeholder="Your Amazon Order ID" required id="orderId" name="orderId" class="w-full border-b-2 border-gray-200 p-2.5 focus:outline-none focus:border-yellow-300">
+                                    <input type="text" placeholder="Your Amazon Order ID" required id="orderId" name="order_id" class="w-full border-b-2 border-gray-200 p-2.5 focus:outline-none focus:border-yellow-300">
                                 </div>
                                 <div class="bg-gray-500 py-1 px-2 rounded-lg ml-2 w-24 text-center">
                                     <a href="https://www.amazon.com/ap/signin?_encoding=UTF8&accountStatusPolicy=P1&openid.assoc_handle=usflex&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.mode=checkid_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.ns.pape=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fpape%2F1.0&openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fgp%2Fcss%2Forder-history%3Fie%3DUTF8%26amp%253Bref_%3Dnav_nav_orders_first&pageId=webcs-yourorder&showRmrMe=1" class="text-sm text-white uppercase">Find ID</a>
@@ -70,7 +74,7 @@
                                     <button class="text-white uppercase">Next</button>
                                 </div>
                             </div>
-                        </form>
+                        {{-- </form> --}}
                     </div>
                     <!-- then show this div -->
                     <div class="hidden" id="ratingpage">
@@ -82,15 +86,15 @@
                             <!--  -->
                             <div class="flex flex-col gap-y-2 items-start">
                                 <div>
-                                    <input type="radio" id="started" name="usage" value="started">
+                                    <input type="radio" id="started" name="day_in_use" value="less than 7 days">
                                     <label for="started" class="text-sm">Just started (less than 7 days)</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="while" name="usage" value="while">
+                                    <input type="radio" id="while" name="day_in_use" value="for a while">
                                     <label for="while" class="text-sm">I've been using it for a while!</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="more" name="usage" value="more">
+                                    <input type="radio" id="more" name="day_in_use" value="more than 60 days">
                                     <label for="more" class="text-sm">I have been using it for more than 60 days.</label><br>
                                 </div>
                             </div>
@@ -136,7 +140,7 @@
                                 <h1>*How would you like us to improve?</h1>
                             </div>
                             <div class="mb-4">
-                                <textarea name="message" id="message" rows="3" required class="w-full border-b border-gray-400 focus:outline-none focus:border-yellow-300"></textarea>
+                                <textarea name="comment" id="message" rows="3" required class="w-full border-b border-gray-400 focus:outline-none focus:border-yellow-300"></textarea>
                             </div>
                             <!-- error -->
                             <div class="hidden w-full mb4" id="textareafill">
@@ -144,7 +148,7 @@
                             </div>
                             <div class="w-full flex items-center justify-end mb-4">
                                 <div class="bg-yellow-400 p-2 px-6 rounded-lg hover:bg-yellow-500 cursor-pointer" onclick="givefbless4stars(event)">
-                                    <button class="text-white uppercase">Next</button>
+                                    <button type="submit" class="text-white uppercase">Next</button>
                                 </div>
                             </div>
                         </div>
@@ -253,11 +257,13 @@
                         <!--  -->
                         <div class="w-full flex items-center justify-end">
                             <div class="bg-gray-400 p-2 px-6 rounded-lg hover:bg-gray-500 cursor-pointer nextbutton" onclick="validateAndProceed()">
-                                <button class="text-white uppercase">Next</button>
+                                <button type="submit" class="text-white uppercase">Next</button>
                             </div>
                         </div>
 
                     </div>
+                </form>
+
                     <!-- Get your benefits  -->
                     <div class="hidden w-full" id="benefitsection">
                         <div class="">
@@ -314,7 +320,7 @@
 
     <!-- script -->
     <script>
-        // 
+        //
         const ToRatingPage = (e) => {
             e.preventDefault();
 
@@ -340,7 +346,7 @@
         };
 
 
-        // 
+        //
         const stars = document.querySelectorAll('.star');
 
         // Add an event listener to each star element
@@ -365,7 +371,7 @@
             console.log("Less4Stars function called.");
 
             const selectedRating = document.querySelectorAll('.star.selected').length;
-            const radioInputs = document.querySelectorAll('input[name="usage"]');
+            const radioInputs = document.querySelectorAll('input[name="day_in_use"]');
             let isRadioSelected = false;
 
             radioInputs.forEach(input => {
@@ -406,13 +412,19 @@
             }
         };
 
-        // 
+        //
         const givefbless4stars = (e) => {
             e.preventDefault();
 
             const messageTextarea = document.getElementById('message');
             const messageValue = messageTextarea.value.trim();
+            const selectedRating = document.querySelectorAll('.star.selected').length;
+                var ratingField = document.getElementById("rating");
 
+                    // Set the value of the hidden input field
+                ratingField.value = selectedRating;
+                submitForm()
+                // document.getElementById("myForm").submit();
             if (messageValue !== "") {
                 const less4Section = document.getElementById('less4');
                 const less4GiveFbSection = document.getElementById('less4givefb');
@@ -428,7 +440,7 @@
                 console.log("Please provide feedback in the textarea.");
             }
         };
-        // 
+        //
         const ratingIcons = document.querySelectorAll('.star');
         let hoveredRating = 0;
         let selectedRating = 0;
@@ -472,7 +484,7 @@
 
 
 
-        // 
+        //
         function toggleHiddenDiv() {
             var radio = document.getElementById("free");
             var hiddenDiv = document.getElementById("hiddenDiv");
@@ -484,7 +496,7 @@
             }
         }
 
-        // 
+        //
         // JavaScript code
 
         const uploadButton = document.getElementById('uploadButton');
@@ -546,6 +558,13 @@
                 console.log('No files selected when proceeding');
                 uploadErrorMessage.classList.remove('hidden');
             } else {
+                const selectedRating = document.querySelectorAll('.star.selected').length;
+                var ratingField = document.getElementById("rating");
+
+                    // Set the value of the hidden input field
+                ratingField.value = selectedRating;
+                submitForm();
+                // document.getElementById("myForm").submit();
                 console.log('Proceeding to the next step');
                 uploadErrorMessage.classList.add('hidden');
 
@@ -559,6 +578,24 @@
                 YOURFEEDBACK.classList.add('hover:bg-gray-300');
             }
         }
+
+        function submitForm() {
+            event.preventDefault();
+
+            const formData = new FormData(document.getElementById('myForm'));
+
+            fetch('/feedback', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.message); // You can display a success message or perform other actions
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        };
     </script>
 </body>
 
