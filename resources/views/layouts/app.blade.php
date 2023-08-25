@@ -44,17 +44,17 @@
                 <div class="">
                     <ul class="flex items-center gap-4">
                         @guest
-                        @if (Route::has('login'))
+                        {{-- @if (Route::has('login'))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
-                        @endif
+                        @endif --}}
 
-                        @if (Route::has('register'))
+                        {{-- @if (Route::has('register'))
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
-                        @endif
+                        @endif --}}
                         @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -85,34 +85,6 @@
         @yield('script')
     </div>
 
-    <script>
-        //
-        function initializeCKEditor(editorId) {
-            ClassicEditor
-                .create(document.querySelector(editorId))
-                .then(editor => {
-                    console.log(editor);
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-        }
-
-        // Call the function with different IDs
-        initializeCKEditor('#editor1');
-        initializeCKEditor('#editor2');
-        initializeCKEditor('#editor3');
-        initializeCKEditor('#editor4');
-        initializeCKEditor('#editor5');
-        initializeCKEditor('#editor6');
-        // Add more instances as needed
-
-
-
-
-        const DashBoard = document.getElementById('dashboard');
-        const OrderInfo = document.getElementById('orderinfo');
-        const Update = document.getElementById('update');
 
 </body>
 

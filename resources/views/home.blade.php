@@ -99,49 +99,74 @@
                 <!-- Order design update -->
                 <div class="w-full bg-white p-3 rounded-xl shadow-sm">
                     <h1 class="text-xl mb-4">Your Order design Update</h1>
-                    <div class="mb-4">
-                        <label for="orderid">"Please enter your Amazon ORDER ID here"</label><br>
-                        <input type="text" id="orderid" name="orderid" placeholder="Change this text"
-                            class="w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400">
-                    </div>
-                    <div class="mb-4">
-                        <label for="findid">"Use the "FIND ID" button to get it easily from your Amazon Order History
-                            page."</label><br>
-                        <input type="text" id="findid" name="findid" placeholder="Change this text"
-                            class="w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400">
-                    </div>
-                    <div class="flex items-center justify-end">
-                        <button
-                            class="bg-yellow-400 hover:bg-yellow-500 py-2 px-4 text-white font-medium rounded-lg text-md uppercase">Update</button>
-                    </div>
+                    <form action="{{ route('saveSetting') }}" method="POST">
+                        @csrf
+                        <div class="row">
+                            <div class="form-group col-md-4 mb-3">
+                                <label class="form-label labeltxt">Tabs Text</label>
+
+                                <input type="text" name="tabs_txt[]" class="form-control inputStyle mt-2" id=""
+                                    value="{{ $setting->tabs_txt[0] }}">
+                                <input type="text" name="tabs_txt[]" class="form-control inputStyle mt-2" id=""
+                                    value="{{ $setting->tabs_txt[1] }}">
+                                <input type="text" name="tabs_txt[]" class="form-control inputStyle mt-2" id=""
+                                    value="{{ $setting->tabs_txt[2] }}">
+
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <input type="text" id="freeP" name="freeP" placeholder="Change this text"
+                                class="w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400">
+                            a same product (for free)"</label><br><br>
+                            <textarea name="" id="editor3" rows="3" placeholder="Change this text"
+                                class=" w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400"></textarea>
+                        </div>
+                        <div class="mb-4">
+                            <label for="orderid">"Please enter your Amazon ORDER ID here"</label><br><br>
+                            <textarea name="" id="editor1" rows="3" placeholder="Change this text"
+                                class=" w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400"></textarea>
+                        </div>
+                        <div class="mb-4">
+                            <label for="findid">"Use the "FIND ID" button to get it easily from your Amazon Order History
+                                page."</label><br><br>
+                            <textarea name="findid" id="editor2" rows="3" placeholder="Change this text"
+                                class=" w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400"></textarea>
+                        </div>
+                        <div class="flex items-center justify-end">
+                            <button type="submit"
+                                class="bg-yellow-400 hover:bg-yellow-500 py-2 px-4 text-white font-medium rounded-lg text-md uppercase">Update</button>
+                        </div>
+                    </form>
                 </div>
                 <!-- 5 stars feedback -->
                 <div class="w-full bg-white p-3 rounded-xl shadow-sm my-4">
                     <h1 class="text-xl mb-4">5 Stars Feedback Update</h1>
                     <div class="mb-4">
-                        <label for="orderid">"Thank you! We are so excited you came for your Benefit! You can choose to
-                            receive
-                            a same product (for free)"</label><br>
                         <input type="text" id="freeP" name="freeP" placeholder="Change this text"
                             class="w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400">
+                        a same product (for free)"</label><br><br>
+                        <textarea name="" id="editor3" rows="3" placeholder="Change this text"
+                            class=" w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400"></textarea>
                     </div>
                     <div class="mb-4">
-                        <label for="findid">"when you complete these steps. We truly appreciate your review on Amazon as
-                            it helps us immensely!"</label><br>
-                        <input type="text" id="findid" name="findid" placeholder="Change this text"
-                            class="w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400">
+                        <label for="">"when you complete these steps. We truly appreciate your review on Amazon as
+                            it helps us immensely!"</label><br><br>
+                        <textarea name="" id="editor4" rows="3" placeholder="Change this text"
+                            class=" w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400"></textarea>
                     </div>
                     <div class="mb-4">
-                        <label for="findid">"Please kindly support our growing business. Please save your review
+                        <label for="">"Please kindly support our growing business. Please save your review
                             screenshot and return here to upload it, so that you can unlock your benefit! Thank you for your
-                            business and your time!"</label><br>
-                        <input type="text" id="review" name="review" placeholder="Change this text"
-                            class="w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400">
+                            business and your time!"</label><br><br>
+                        <textarea name="" id="editor5" rows="3" placeholder="Change this text"
+                            class=" w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400"></textarea>
+
                     </div>
                     <div class="mb-4">
-                        <label for="findid">"Leave feedback text"</label><br>
-                        <input type="text" id="Leavefb" name="Leavefb" placeholder="Change this text"
-                            class="w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400">
+                        <label for="">"Leave feedback text"</label><br><br>
+                        <textarea name="" id="editor6" rows="3" placeholder="Change this text"
+                            class=" w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400"></textarea>
                     </div>
                     <div class="flex items-center justify-end">
                         <button
@@ -157,6 +182,8 @@
                     <h1 class="text-2xl font-medium uppercase">Order Information</h1>
                 </div>
                 <div class="flex items-center justify-end mb-3">
+                    <button id="" class="uppercase bg-green-400 hover:bg-green-500 text-white font-bold py-2.5 px-8 rounded-xl ml-2"
+                    onclick="openImportModal()">+ Import Orders</button>
                     <button id="openModalBtn"
                         class="uppercase bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2.5 px-8 rounded-xl">+
                         Add</button>
@@ -185,7 +212,8 @@
                                             <i id="editIcon"
                                                 onclick="editOrder(`{{ $item->amazon_order_id }}`, `{{ $item->id }}`)"
                                                 class="fa fa-edit text-lg hover:text-yellow-400 cursor-pointer"></i>
-                                            <i onclick="deleteOrder({{ $item->id }})" class="fa fa-trash text-lg hover:text-yellow-400 cursor-pointer"></i>
+                                            <i onclick="deleteOrder({{ $item->id }})"
+                                                class="fa fa-trash text-lg hover:text-yellow-400 cursor-pointer"></i>
                                         </div>
                                     </th>
                                 </tr>
@@ -195,7 +223,18 @@
                 </div>
                 <!--  -->
             </div>
+            <div id="importModal" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
+                <div class="bg-white p-4 rounded-lg">
+                    <h2 class="text-lg font-semibold mb-2">Import Orders</h2>
+                    <form action="{{route('importOrders')}}" method="POST" id="myForm" enctype="multipart/form-data">
+                        @csrf
+                        <input type="file" id="fileInput" name="file" accept=".xlsx, .xls">
+                        <button type="submit" class="bg-blue-500 text-white px-3 py-1 rounded" >Import</button>
+                        <button class="bg-gray-300 text-gray-700 px-3 py-1 rounded ml-2" onclick="closeImportModal()">Cancel</button>
+                    </form>
 
+                </div>
+            </div>
             <div id="defaultModal" tabindex="-1" aria-hidden="true"
                 class="fixed inset-0 flex items-center hidden justify-center z-50">
                 <div class="w-full max-w-2xl">
@@ -377,22 +416,77 @@
             }
         });
 
-        function deleteOrder(OrderId){
+        function deleteOrder(OrderId) {
             $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.ajax({
-                    type: 'POST',
-                    url: `/order/delete`,
-                    data: {
-                        order_id: OrderId,
-                    },
-                    success: function(data) {
-                        window.location.reload();
-                    }
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: 'POST',
+                url: `/order/delete`,
+                data: {
+                    order_id: OrderId,
+                },
+                success: function(data) {
+                    window.location.reload();
+                }
+            });
+        }
+
+        function initializeCKEditor(editorId) {
+            ClassicEditor
+                .create(document.querySelector(editorId))
+                .then(editor => {
+                    console.log(editor);
+                })
+                .catch(error => {
+                    console.error(error);
                 });
         }
+
+        // Call the function with different IDs
+        initializeCKEditor('#editor1');
+        initializeCKEditor('#editor2');
+        initializeCKEditor('#editor3');
+        initializeCKEditor('#editor4');
+        initializeCKEditor('#editor5');
+        initializeCKEditor('#editor6');
+        // Add more instances as needed
+
+        function openImportModal() {
+        document.getElementById("importModal").classList.remove("hidden");
+    }
+
+    function closeImportModal() {
+        document.getElementById("importModal").classList.add("hidden");
+    }
+
+    function importOrders() {
+        const formData = new FormData(document.getElementById('myForm'));
+
+        // const fileInput = document.getElementById("fileInput");
+        // const file = fileInput.files[0];
+
+        // // Assuming you're using FormData to send the file to the backend
+        // const formData = new FormData();
+        // formData.append('file', file);
+
+        // Send the file to the backend using an AJAX request
+        fetch('/import-orders', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle success or error messages
+            console.log(data);
+            closeImportModal();
+        })
+        .catch(error => {
+            console.error(error);
+            closeImportModal();
+        });
+    }
     </script>
 @endsection

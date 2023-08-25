@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Feedback;
 use App\Models\Order;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -27,7 +28,9 @@ class DashboardController extends Controller
     {
         $feedback = Feedback::get();
         $order = Order::get();
-
-        return view('home', compact('feedback','order'));
+        $setting = Setting::first();
+        return view('home', compact('feedback','order','setting'));
     }
+
+
 }
