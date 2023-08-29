@@ -98,13 +98,14 @@
                 </div>
                 <!-- Order design update -->
                 <div class="w-full bg-white p-3 rounded-xl shadow-sm">
-                    <h1 class="text-xl mb-4">Your Order design Update</h1>
+                    <h1 class="text-xl mb-4"><strong>Your Order design Update</strong></h1>
                     <form action="{{ route('saveSetting') }}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="form-group col-md-4 mb-3">
-                                <label class="form-label labeltxt">Tabs Text</label>
-
+                                <label class="form-label labeltxt"><strong>Tabs Text</strong></label>
+                                <input type="text" name="thanks_header" class="form-control inputStyle mt-2"
+                                    id="" value="{{ $setting->thanks_header }}">
                                 <input type="text" name="tabs_txt[]" class="form-control inputStyle mt-2" id=""
                                     value="{{ $setting->tabs_txt[0] }}">
                                 <input type="text" name="tabs_txt[]" class="form-control inputStyle mt-2" id=""
@@ -114,24 +115,39 @@
 
                             </div>
                         </div>
-
                         <div class="mb-4">
-                            <input type="text" id="freeP" name="freeP" placeholder="Change this text"
-                                class="w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400">
-                            a same product (for free)"</label><br><br>
-                            <textarea name="" id="editor3" rows="3" placeholder="Change this text"
-                                class=" w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400"></textarea>
+                            <label for="findid"><strong>First Tab </strong></label><br><br>
+                            <textarea name="first_tab[]" id="editor1" rows="3" placeholder="Change this text"
+                                class=" w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400">{{ $setting->first_tab[0] }}</textarea>
+                            <label for="" class="mt-4"><strong>Duration and Stars </strong></label><br>
+                            <input type="text" name="first_tab[]" class="form-control inputStyle" id=""
+                                value="{{ $setting->first_tab[1] }}">
+                            <input type="text" name="first_tab[]" class="form-control inputStyle mt-2" id=""
+                                value="{{ $setting->first_tab[2] }}">
                         </div>
                         <div class="mb-4">
-                            <label for="orderid">"Please enter your Amazon ORDER ID here"</label><br><br>
-                            <textarea name="" id="editor1" rows="3" placeholder="Change this text"
-                                class=" w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400"></textarea>
+                            <label for="findid"><strong>4 star reviw page </strong></label><br><br>
+                            <textarea name="four_star_page[]" id="editor2" rows="3" placeholder="Change this text"
+                                class=" w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400">{{ $setting->four_star_page[0] }}</textarea>
                         </div>
                         <div class="mb-4">
-                            <label for="findid">"Use the "FIND ID" button to get it easily from your Amazon Order History
-                                page."</label><br><br>
-                            <textarea name="findid" id="editor2" rows="3" placeholder="Change this text"
-                                class=" w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400"></textarea>
+                            <label for="findid"><strong>5 star reviw page </strong></label><br><br>
+                            <textarea name="five_star_page[]" id="editor4" rows="3" placeholder="Change this text"
+                                class=" w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400">{{ $setting->five_star_page[0] }}</textarea>
+                            <input type="text" name="five_star_page[]" class="form-control inputStyle mt-2"
+                                id="" value="{{ $setting->five_star_page[1] }}">
+                            <input type="text" name="five_star_page[]" class="form-control inputStyle mt-2"
+                                id="" value="{{ $setting->five_star_page[2] }}">
+                            <label for="" class="mt-2">Review </label><br>
+                            <input type="text" name="review[]" class="form-control inputStyle mt-2" id=""
+                                value="{{ $setting->review[0] }}">
+                        </div>
+                        <div class="mb-4">
+                            <label for="findid"><strong>Thanks page </strong></label><br><br>
+                            <textarea name="thanks_page[]" id="editor3" rows="3" placeholder="Change this text"
+                                class=" w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400">{{ $setting->thanks_page[0] }}</textarea>
+                                <input type="text" name="thanks_page[]" class="form-control inputStyle mt-2" id=""
+                                value="{{ $setting->thanks_page[1] }}">
                         </div>
                         <div class="flex items-center justify-end">
                             <button type="submit"
@@ -140,7 +156,7 @@
                     </form>
                 </div>
                 <!-- 5 stars feedback -->
-                <div class="w-full bg-white p-3 rounded-xl shadow-sm my-4">
+                {{-- <div class="w-full bg-white p-3 rounded-xl shadow-sm my-4">
                     <h1 class="text-xl mb-4">5 Stars Feedback Update</h1>
                     <div class="mb-4">
                         <input type="text" id="freeP" name="freeP" placeholder="Change this text"
@@ -172,7 +188,7 @@
                         <button
                             class="bg-yellow-400 hover:bg-yellow-500 py-2 px-4 text-white font-medium rounded-lg text-md uppercase">Update</button>
                     </div>
-                </div>
+                </div> --}}
                 <!--  -->
             </div>
 
@@ -182,8 +198,9 @@
                     <h1 class="text-2xl font-medium uppercase">Order Information</h1>
                 </div>
                 <div class="flex items-center justify-end mb-3">
-                    <button id="" class="uppercase bg-green-400 hover:bg-green-500 text-white font-bold py-2.5 px-8 rounded-xl ml-2"
-                    onclick="openImportModal()">+ Import Orders</button>
+                    <button id=""
+                        class="uppercase bg-green-400 hover:bg-green-500 text-white font-bold py-2.5 px-8 rounded-xl ml-2"
+                        onclick="openImportModal()">+ Import Orders</button>
                     <button id="openModalBtn"
                         class="uppercase bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2.5 px-8 rounded-xl">+
                         Add</button>
@@ -223,14 +240,17 @@
                 </div>
                 <!--  -->
             </div>
-            <div id="importModal" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
+            <div id="importModal"
+                class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
                 <div class="bg-white p-4 rounded-lg">
                     <h2 class="text-lg font-semibold mb-2">Import Orders</h2>
-                    <form action="{{route('importOrders')}}" method="POST" id="myForm" enctype="multipart/form-data">
+                    <form action="{{ route('importOrders') }}" method="POST" id="myForm"
+                        enctype="multipart/form-data">
                         @csrf
                         <input type="file" id="fileInput" name="file" accept=".xlsx, .xls">
-                        <button type="submit" class="bg-blue-500 text-white px-3 py-1 rounded" >Import</button>
-                        <button class="bg-gray-300 text-gray-700 px-3 py-1 rounded ml-2" onclick="closeImportModal()">Cancel</button>
+                        <button type="submit" class="bg-blue-500 text-white px-3 py-1 rounded">Import</button>
+                        <button class="bg-gray-300 text-gray-700 px-3 py-1 rounded ml-2"
+                            onclick="closeImportModal()">Cancel</button>
                     </form>
 
                 </div>
@@ -455,38 +475,38 @@
         // Add more instances as needed
 
         function openImportModal() {
-        document.getElementById("importModal").classList.remove("hidden");
-    }
+            document.getElementById("importModal").classList.remove("hidden");
+        }
 
-    function closeImportModal() {
-        document.getElementById("importModal").classList.add("hidden");
-    }
+        function closeImportModal() {
+            document.getElementById("importModal").classList.add("hidden");
+        }
 
-    function importOrders() {
-        const formData = new FormData(document.getElementById('myForm'));
+        function importOrders() {
+            const formData = new FormData(document.getElementById('myForm'));
 
-        // const fileInput = document.getElementById("fileInput");
-        // const file = fileInput.files[0];
+            // const fileInput = document.getElementById("fileInput");
+            // const file = fileInput.files[0];
 
-        // // Assuming you're using FormData to send the file to the backend
-        // const formData = new FormData();
-        // formData.append('file', file);
+            // // Assuming you're using FormData to send the file to the backend
+            // const formData = new FormData();
+            // formData.append('file', file);
 
-        // Send the file to the backend using an AJAX request
-        fetch('/import-orders', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Handle success or error messages
-            console.log(data);
-            closeImportModal();
-        })
-        .catch(error => {
-            console.error(error);
-            closeImportModal();
-        });
-    }
+            // Send the file to the backend using an AJAX request
+            fetch('/import-orders', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle success or error messages
+                    console.log(data);
+                    closeImportModal();
+                })
+                .catch(error => {
+                    console.error(error);
+                    closeImportModal();
+                });
+        }
     </script>
 @endsection

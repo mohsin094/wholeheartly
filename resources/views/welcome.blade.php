@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Thank you for your order</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Fonts -->
@@ -27,24 +27,24 @@
                     <!-- if selected stars are 4 less than 4 stars and give feedback then hide this -->
                     <div class=" flex flex-col items-center gap-y-6 w-full" id="mainpage">
                         <div>
-                            <h1 class="text-2xl">Thank you for your Order</h1>
+                            <h1 class="text-2xl">{{ $setting->thanks_header }}</h1>
                         </div>
                         <!--  -->
                         <div class="grid grid-cols-3 w-full items-center bg-gray-200 rounded-full">
                             <div class="rounded-l-full bg-yellow-400 text-white shadow-xl" id="YOURORDER">
                                 <h1
                                     class="text-center md:px-2 px-0 py-3 cursor-default md:text-sm text-xs whitespace-nowrap">
-                                    1. YOUR ORDER</h1>
+                                    {{ $setting->tabs_txt[0] }}</h1>
                             </div>
                             <div class="hover:bg-gray-300 " id="YOURFEEDBACK">
                                 <h1
                                     class="text-center md:px-2 px-0 py-3 cursor-default md:text-sm text-xs whitespace-nowrap">
-                                    2. YOUR FEEDBACK</h1>
+                                    {{ $setting->tabs_txt[1] }}</h1>
                             </div>
                             <div class="hover:bg-gray-300 rounded-r-full" id="YOURBENEFITS">
                                 <h1
                                     class="text-center md:px-2 px-0 py-3 cursor-default md:text-sm text-xs whitespace-nowrap">
-                                    3. GET YOUR BENEFIT</h1>
+                                    {{ $setting->tabs_txt[2] }}</h1>
                             </div>
                         </div>
                     </div>
@@ -57,9 +57,7 @@
                         <div class=" flex flex-col items-center gap-y-6 w-full" id="yourorder1">
 
                             <div class="text-center w-full">
-                                <h1>Please enter your Amazon ORDER ID here.</h1>
-                                <h1 class="">Use the <strong>"FIND ID"</strong> button to get it easily from your
-                                    Amazon Order History page.</h1>
+                                <h1>{!! $setting->first_tab[0] !!}</h1>
                             </div>
                             <!--  -->
                             {{-- <form action="" class="w-full flex flex-col items-center gap-6"> --}}
@@ -96,7 +94,7 @@
                             <div class="grid md:grid-cols-2 grid-cols-1 gap-x-4 gap-y-8">
                                 <!--  -->
                                 <div class="">
-                                    <h1 class="text-lg">*How long have you been using it?</h1>
+                                    <h1 class="text-lg">{!! $setting->first_tab[1] !!}</h1>
                                 </div>
                                 <!--  -->
                                 <div class="flex flex-col gap-y-2 items-start">
@@ -117,7 +115,7 @@
                                 </div>
                                 <!--  -->
                                 <div class="">
-                                    <h1 class="text-lg">*How satisfied are you with our product?</h1>
+                                    <h1 class="text-lg">{!! $setting->first_tab[2] !!}</h1>
                                 </div>
                                 <div class="">
                                     <div class="flex items-center space-x-3">
@@ -169,8 +167,7 @@
                         <div class="hidden w-full" id="less4">
                             <div class="w-full">
                                 <div class="text-2xl mb-4">
-                                    <h1>*Why is this item short of your expectations?</h1>
-                                    <h1>*How would you like us to improve?</h1>
+                                    <h1>{!! $setting->four_star_page[0] !!}</h1>
                                 </div>
                                 <div class="mb-4">
                                     <textarea name="comment" id="message" rows="3" required
@@ -193,13 +190,13 @@
                             <div class="flex flex-col items-center gap-y-8 w-full">
                                 <i class="fa fa-check-circle text-9xl text-yellow-500" aria-hidden="true"></i>
                                 <div class="flex flex-col gap-4 w-full text-lg">
-                                    <h1>Thank you for your feedback!</h1>
-                                    <h1>Our customer service will contact you shortly.</h1>
+                                    <h1>{!! $setting->thanks_page[0] !!}</h1>
+                                    {{-- <h1>Our customer service will contact you shortly.</h1>
                                     <h1>Please CHECK YOUR EMAIL INBOX (or SPAM BOX) for further assistance!</h1>
-                                    <h1>Have a Nice Day!</h1>
+                                    <h1>Have a Nice Day!</h1> --}}
                                 </div>
                                 <div class="">
-                                    <p>wholeheartly.com Customer Support Team</p>
+                                    <p>{!! $setting->thanks_page[1] !!}</p>
                                 </div>
                             </div>
 
@@ -207,26 +204,22 @@
                         <!-- if you selected all 5 stars then show this -->
                         <div class="hidden w-full" id="stars5">
                             <div class="text-center text-sm w-full mb-5">
-                                <h1 class="max-w-lg mx-auto">Thank you! We are so excited you came for your Benefit!
-                                    You can choose to receive
-                                    <strong>a same product (for free)</strong>
+                                <h1 class="w-full"> {!! $setting->five_star_page[0] !!}
                                 </h1>
-                                <h1 class="w-full">when you complete these steps. We truly appreciate your review on
+                                {{-- <h1 class="w-full">when you complete these steps. We truly appreciate your review on
                                     Amazon as it helps us immensely!</h1>
                                 <h1 class="w-full">Please kindly support our growing business. <strong> Please save
                                         your review screenshot and return here to upload it </strong> , so that you can
-                                    unlock your benefit! Thank you for your business and your time!</h1>
+                                    unlock your benefit! Thank you for your business and your time!</h1> --}}
                             </div>
                             <!--  -->
                             <div class="w-full text-center mb-5">
                                 <a href="https://www.youtube.com/watch?v=PbVhPKgHi38&feature=youtu.be" target="_blank"
-                                    class="mb-4 font-medium text-gray-700 text-xl bg-yellow-100 py-3 px-5 rounded-full border-4 border-yellow-400 hover:bg-yellow-200">Leave
-                                    Feedback</a>
+                                    class="mb-4 font-medium text-gray-700 text-xl bg-yellow-100 py-3 px-5 rounded-full border-4 border-yellow-400 hover:bg-yellow-200">{!! $setting->five_star_page[1] !!}</a>
 
                             </div>
                             <div class="w-full text-center mb-3">
-                                <p class="text-xs text-yellow-500">Leave Feedback for the products on Amazon and claim
-                                    all offers!</p>
+                                <p class="text-xs text-yellow-500">{!! $setting->five_star_page[2] !!}</p>
                             </div>
                             <!--  -->
                             <div class="w-full">
@@ -316,7 +309,7 @@
                                     <p class="capitalize  text-red-800 text-xs">verified purchase</p>
                                 </div>
                                 <div class=" text-sm">
-                                    <h1>You FeedBack here</h1>
+                                    <h1>{!! $setting->review[0] !!}</h1>
                                 </div>
                             </div>
                             <!-- it shows when you do not upload image but press next button -->
