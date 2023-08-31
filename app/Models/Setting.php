@@ -16,7 +16,8 @@ class Setting extends Model
         'four_star_page',
         'five_star_page',
         'review',
-        'thanks_page'
+        'thanks_page',
+        'bg_img'
     ];
 
 

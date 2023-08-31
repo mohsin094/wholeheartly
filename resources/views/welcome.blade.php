@@ -19,7 +19,7 @@
 
 <body class="antialiased overflow-hidden bg-gray-100">
     <div class="relative min-h-screen flex items-center justify-center">
-        <img src="{{ asset('images/bridge.jpg') }}" alt="bridge" class="absolute inset-0 w-full h-full object-cover">
+        <img src="{{ $setting->bg_img ? asset('uploads/'.$setting->bg_img) : asset('images/bridge.jpg') }}" alt="bridge" class="absolute inset-0 w-full h-full object-cover">
         <!-- main -->
         <div class="absolute inset-0 flex items-center justify-center max-w-3xl mx-auto lg:px-0 px-4">
             <div class="bg-white rounded-xl py-5 px-8 w-full max-h-full overflow-y-auto">

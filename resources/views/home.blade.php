@@ -99,7 +99,7 @@
                 <!-- Order design update -->
                 <div class="w-full bg-white p-3 rounded-xl shadow-sm">
                     <h1 class="text-xl mb-4"><strong>Your Order design Update</strong></h1>
-                    <form action="{{ route('saveSetting') }}" method="POST">
+                    <form action="{{ route('saveSetting') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="form-group col-md-4 mb-3">
@@ -114,6 +114,10 @@
                                     value="{{ $setting->tabs_txt[2] }}">
 
                             </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="" class="mt-4"><strong>Background Image </strong></label><br>
+                            <input type="file" id="fileInput" name="bg_img" accept="image/*" />
                         </div>
                         <div class="mb-4">
                             <label for="findid"><strong>First Tab </strong></label><br><br>
@@ -146,8 +150,8 @@
                             <label for="findid"><strong>Thanks page </strong></label><br><br>
                             <textarea name="thanks_page[]" id="editor3" rows="3" placeholder="Change this text"
                                 class=" w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400">{{ $setting->thanks_page[0] }}</textarea>
-                                <input type="text" name="thanks_page[]" class="form-control inputStyle mt-2" id=""
-                                value="{{ $setting->thanks_page[1] }}">
+                            <input type="text" name="thanks_page[]" class="form-control inputStyle mt-2"
+                                id="" value="{{ $setting->thanks_page[1] }}">
                         </div>
                         <div class="flex items-center justify-end">
                             <button type="submit"
