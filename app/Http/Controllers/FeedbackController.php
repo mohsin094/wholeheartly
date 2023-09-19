@@ -39,16 +39,14 @@ class FeedbackController extends Controller
     public function upload(Request $request)
     {
         if ($request->hasFile('upload')) {
-            $originName = $request->file('upload')->getClientOriginalName();
-            $fileName = pathinfo($originName, PATHINFO_FILENAME);
-            $extension = $request->file('upload')->getClientOriginalExtension();
-            $fileName = $fileName . '_' . time() . '.' . $extension;
+            $image = $request->file('upload');
+            $filename = time() . '_' . $image->getClientOriginalName();
 
-            $request->file('upload')->move(public_path('media'), $fileName);
+            $path = $image->storeAs('images', $filename, 'public');
 
-            $url = asset('media/' . $fileName);
+            $url = asset('uploads/' . $path);
 
-            return response()->json(['fileName' => $fileName, 'uploaded'=> 1, 'url' => $url]);
+            return response()->json(['fileName' => $filename, 'uploaded' => 1, 'url' => $url]);
         }
     }
 }
