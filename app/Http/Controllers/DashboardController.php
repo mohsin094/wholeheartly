@@ -29,8 +29,6 @@ class DashboardController extends Controller
         $feedback = Feedback::get();
         $order = Order::get();
         $setting = Setting::first();
-        return view('home', compact('feedback','order','setting'));
+        return view('home', compact('feedback', 'order', 'setting'));
     }
-
-
 }

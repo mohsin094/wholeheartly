@@ -142,9 +142,52 @@
                                 id="" value="{{ $setting->five_star_page[1] }}">
                             <input type="text" name="five_star_page[]" class="form-control inputStyle mt-2"
                                 id="" value="{{ $setting->five_star_page[2] }}">
-                            <label for="" class="mt-2">Review </label><br>
-                            <input type="text" name="review[]" class="form-control inputStyle mt-2" id=""
-                                value="{{ $setting->review[0] }}">
+                            <label for="" class="mt-2">Review Screenshot Error Message </label><br>
+                            <textarea name="review[]" id="editor7" rows="3" placeholder="Change this text"
+                                class=" w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400">{{ $setting->review[0] }}</textarea>
+
+                            <div class="w-full">
+                                <label for="reviewfileInput" class="mt-2">Review Screenshots </label><br>
+                                <div class="relative inline-flex items-center justify-left space-x-2 w-full">
+                                    <input type="file" id="reviewfileInput" class="hidden" name="images[]"
+                                        accept="image/*" multiple>
+                                    <button id="uploadButton" type="button"
+                                        class="flex items-center px-6 py-3 border rounded-lg bg-yellow-500 text-white hover:bg-yellow-600 focus:outline-none">
+                                        <svg class="w-5 h-5 mr-1" version="1.1" id="Capa_1"
+                                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                            viewBox="0 0 312.602 312.602" xml:space="preserve" fill="#000000">
+                                            <!-- SVG icon code -->
+                                        </svg>
+                                        <span class="uppercase">upload review screenshot</span>
+                                    </button>
+                                </div>
+
+                                <!-- Preview uploaded images -->
+                                <div class="w-full my-2 text-center" id="uploadimagesection">
+                                    <div class="grid gap-2" id="uploadedImages"></div>
+                                </div>
+
+                                <div class="w-full my-2 text-center" id="preloadedImagesSection">
+                                    <div class="grid gap-2" id="preloadedImagesContainer">
+
+                                        @foreach ($setting->images as $index => $item)
+                                            <div class="flex items-center gap-2 my-2" id="{{ $item->id }}">
+                                                <img src="{{ asset('uploads/' . $item->image) }}" alt="Preloaded Image"
+                                                    style="max-width: 100px;">
+                                                <a class="cursor-pointer hover:text-gray-600"
+                                                    onclick="deletePreloadedImage({{ $index }},{{ $item->id }})">
+                                                    <i class="fa fa-trash text-gray-500 text-lg"></i>
+                                                </a>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <!-- Display preloaded data -->
+
+
+
+                                <!--  -->
+                            </div>
                         </div>
                         <div class="mb-4">
                             <label for="findid"><strong>Thanks page </strong></label><br><br>
@@ -309,6 +352,7 @@
     </section>
 @endsection
 @section('script')
+<script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
     <script>
         const DashBoard = document.getElementById('dashboard');
         const OrderInfo = document.getElementById('orderinfo');
@@ -473,9 +517,22 @@
         initializeCKEditor('#editor1');
         initializeCKEditor('#editor2');
         initializeCKEditor('#editor3');
-        initializeCKEditor('#editor4');
+
+
+
         initializeCKEditor('#editor5');
         initializeCKEditor('#editor6');
+        initializeCKEditor('#editor7');
+
+        ClassicEditor
+        .create( document.querySelector( '#editor4' ),{
+            ckfinder: {
+                uploadUrl: '{{route('ckeditor.upload').'?_token='.csrf_token()}}',
+            }
+        })
+        .catch( error => {
+
+        } );
         // Add more instances as needed
 
         function openImportModal() {
@@ -512,5 +569,77 @@
                     closeImportModal();
                 });
         }
+
+        const uploadButton = document.getElementById('uploadButton');
+        const reviewfileInput = document.getElementById('reviewfileInput');
+        const uploadImageSection = document.getElementById('uploadimagesection');
+        const uploadedImagesContainer = document.getElementById('uploadedImages');
+        const preloadedDataSection = document.getElementById('preloadedDataSection');
+
+        uploadButton.addEventListener('click', () => {
+            reviewfileInput.click();
+        });
+
+        reviewfileInput.addEventListener('change', () => {
+            if (reviewfileInput.files.length === 0) {
+                console.log('No files selected');
+                uploadImageSection.classList.add('hidden');
+            } else {
+                console.log('Files selected');
+                uploadImageSection.classList.remove('hidden');
+
+                // Clear previous previews
+                uploadedImagesContainer.innerHTML = '';
+
+                // Preview uploaded images
+                for (const file of reviewfileInput.files) {
+                    const imageContainer = document.createElement('div');
+                    imageContainer.className = 'flex items-center gap-2 my-2';
+
+                    // Create an image element for preview
+                    const imageElement = document.createElement('img');
+                    imageElement.src = URL.createObjectURL(file);
+                    imageElement.alt = file.name;
+                    imageElement.style.maxWidth = '100px'; // Adjust image size as needed
+
+                    // Add the image element to the container
+                    imageContainer.appendChild(imageElement);
+
+                    // Add a delete button
+                    const deleteButton = document.createElement('button');
+                    deleteButton.innerHTML = '<i class="fa fa-trash text-gray-500 text-lg"></i>';
+                    deleteButton.className = 'cursor-pointer hover:text-gray-600';
+                    deleteButton.addEventListener('click', () => {
+                        // Remove the image container when the delete button is clicked
+                        imageContainer.remove();
+                    });
+                    imageContainer.appendChild(deleteButton);
+
+                    // Append the image container to the uploaded images container
+                    uploadedImagesContainer.appendChild(imageContainer);
+                }
+            }
+        });
+
+        function deletePreloadedImage(index, id) {
+            const preloadedImageContainer = document.getElementById('preloadedImagesContainer');
+            const image = document.getElementById(id);
+
+            // Hide the parent div element containing the image
+            image.style.display = 'none';
+
+            $.ajax({
+                url: '/media-delete/' + id,
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    // Handle success if needed
+                },
+                error: function(xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        }
+        // Function to add preloaded data (modify as needed)
     </script>
 @endsection

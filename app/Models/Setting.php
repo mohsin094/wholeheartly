@@ -81,4 +81,9 @@ class Setting extends Model
     {
         return json_decode($value, true);
     }
+
+    public function images()
+    {
+        return $this->morphMany(Media::class, 'imageable');
+    }
 }

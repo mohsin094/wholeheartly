@@ -13,13 +13,32 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+        integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js"
+        integrity="sha512-WW8/jxkELe2CAiE4LvQfwm1rajOS8PHasCCx+knHG0gBHt8EXxS6T6tJRTGuDQVnluuAvMxWF4j8SNFDKceLFg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </head>
+<style>
+    .slider-container img {
+        height: 17vh;
+        border-radius: 8px;
+        margin: 14px 0px;
+    }
+
+    .star-page-img img, video {
+    max-width: 250px;
+    max-height: 250px;
+}
+</style>
 
 <body class="antialiased overflow-hidden bg-gray-100">
     <div class="relative min-h-screen flex items-center justify-center">
-        <img src="{{ $setting->bg_img ? asset('uploads/'.$setting->bg_img) : asset('images/bridge.jpg') }}" alt="bridge" class="absolute inset-0 w-full h-full object-cover">
+        <img src="{{ $setting->bg_img ? asset('uploads/' . $setting->bg_img) : asset('images/bridge.jpg') }}"
+            alt="bridge" class="absolute inset-0 w-full h-full object-cover">
         <!-- main -->
         <div class="absolute inset-0 flex items-center justify-center max-w-3xl mx-auto lg:px-0 px-4">
             <div class="bg-white rounded-xl py-5 px-8 w-full max-h-full overflow-y-auto">
@@ -180,7 +199,7 @@
                                 <div class="w-full flex items-center justify-end mb-4">
                                     <div class="bg-yellow-400 p-2 px-6 rounded-lg hover:bg-yellow-500 cursor-pointer"
                                         onclick="givefbless4stars(event)">
-                                        <button type="submit" class="text-white uppercase">Next</button>
+                                        <button type="submit" class="text-white uppercase">Submit</button>
                                     </div>
                                 </div>
                             </div>
@@ -191,9 +210,6 @@
                                 <i class="fa fa-check-circle text-9xl text-yellow-500" aria-hidden="true"></i>
                                 <div class="flex flex-col gap-4 w-full text-lg">
                                     <h1>{!! $setting->thanks_page[0] !!}</h1>
-                                    {{-- <h1>Our customer service will contact you shortly.</h1>
-                                    <h1>Please CHECK YOUR EMAIL INBOX (or SPAM BOX) for further assistance!</h1>
-                                    <h1>Have a Nice Day!</h1> --}}
                                 </div>
                                 <div class="">
                                     <p>{!! $setting->thanks_page[1] !!}</p>
@@ -203,14 +219,9 @@
                         </div>
                         <!-- if you selected all 5 stars then show this -->
                         <div class="hidden w-full" id="stars5">
-                            <div class="text-center text-sm w-full mb-5">
+                            <div class="text-center text-sm w-full mb-5 star-page-img">
                                 <h1 class="w-full"> {!! $setting->five_star_page[0] !!}
                                 </h1>
-                                {{-- <h1 class="w-full">when you complete these steps. We truly appreciate your review on
-                                    Amazon as it helps us immensely!</h1>
-                                <h1 class="w-full">Please kindly support our growing business. <strong> Please save
-                                        your review screenshot and return here to upload it </strong> , so that you can
-                                    unlock your benefit! Thank you for your business and your time!</h1> --}}
                             </div>
                             <!--  -->
                             <div class="w-full text-center mb-5">
@@ -246,84 +257,44 @@
                                 </div>
                                 <!-- when image is upload show this otherwise hidden-->
                                 <div class="hidden w-full my-2 text-center" id="uploadimagesection">
-                                    <!-- <div>
-                                    <h1 id="imagename">Image Name with Their Format</h1>
-                                </div>
-                                <div class="flex items-center gap-2 my-2">
-                                    <div class="w-full bg-yellow-400 py-1 rounded-full"></div>
-                                    <i class="fa fa-check-circle text-gray-500 text-lg"></i>
-                                    <i class="fa fa-trash text-gray-500 text-lg cursor-pointer hover:text-gray-600" onclick="deleteImage()"></i>
-                                </div> -->
                                     <div class="grid gap-2" id="uploadedImages"></div>
                                 </div>
 
                                 <!--  -->
                             </div>
                             <!--  -->
-                            <div class="">
-                                <div class="flex items-center gap-2">
-                                    <div class="flex items-center">
-                                        <svg class="w-3 h-3 text-yellow-400" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                            viewBox="0 0 22 20">
-                                            <path
-                                                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                        </svg>
-                                        <svg class="w-3 h-3 text-yellow-400" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                            viewBox="0 0 22 20">
-                                            <path
-                                                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                        </svg>
-                                        <svg class="w-3 h-3 text-yellow-400" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                            viewBox="0 0 22 20">
-                                            <path
-                                                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                        </svg>
-                                        <svg class="w-3 h-3 text-yellow-400" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                            viewBox="0 0 22 20">
-                                            <path
-                                                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                        </svg>
-                                        <svg class="w-3 h-3 text-yellow-400" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                            viewBox="0 0 22 20">
-                                            <path
-                                                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                        </svg>
+                            <div class="slider-container">
+                                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        @foreach ($setting->images as $index => $item)
+                                            <div class="carousel-item active">
+                                                <img src="{{ asset('uploads/' . $item->image) }}"
+                                                    class="d-block w-100" alt="...">
+                                            </div>
+                                        @endforeach
                                     </div>
-                                    <div class="font-medium">
-                                        <h1>Love it</h1>
-                                    </div>
-                                </div>
-                                <div class="text-xs text-gray-500">
-                                    <h1>March 20, 2023</h1>
-                                </div>
-                                <div
-                                    class="grid md:grid-cols-4 grid-cols-1 text-[10px] text-gray-500 items-center w-full">
-                                    <p class="capitalize ">digital storage capacity: <span>8</span></p>
-                                    <p class="capitalize ">offer type: <span>with special offers</span></p>
-                                    <p class="capitalize ">connectivity: <span>Wi-Fi</span></p>
-                                    <p class="capitalize  text-red-800 text-xs">verified purchase</p>
-                                </div>
-                                <div class=" text-sm">
-                                    <h1>{!! $setting->review[0] !!}</h1>
+                                    <button class="carousel-control-prev" type="button"
+                                        data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button"
+                                        data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
                                 </div>
                             </div>
                             <!-- it shows when you do not upload image but press next button -->
                             <div class="hidden text-center text-red-500 text-sm my-4" id="uploadErrorMessage">
-                                <p>Please Upload Review Screenshot before proceeding to the next step. Please feel free
-                                    to contact us if there are any problems. Email address:
-                                    <strong>scogurei@gmail.com</strong>
+                                {!! $setting->review[0] !!}
                                 </p>
                             </div>
                             <!--  -->
                             <div class="w-full flex items-center justify-end">
                                 <div class="bg-gray-400 p-2 px-6 rounded-lg hover:bg-gray-500 cursor-pointer nextbutton"
                                     onclick="validateAndProceed()">
-                                    <button type="submit" class="text-white uppercase">Next</button>
+                                    <button type="submit" class="text-white uppercase">Submit</button>
                                 </div>
                             </div>
 
@@ -333,61 +304,13 @@
                     <!-- Get your benefits  -->
                     <div class="hidden w-full" id="benefitsection">
                         <div class="">
-                            <div>
-                                <h1>Please select your benefit type, for free product please enter your address to
-                                    receive it.</h1>
-                            </div>
-
-                            <div class="">
-                                <input type="radio" name="free" id="free" class="cursor-pointer"
-                                    onchange="toggleHiddenDiv()">
-                                <label for="free" class="capitalize font-medium cursor-pointer">same free
-                                    product</label>
-                                <div class="my-2">
-                                    <img src="{{ asset('images/product.png') }}" alt="product" class="w-56">
+                            <div class="flex flex-col items-center gap-y-8 w-full">
+                                {{-- <i class="fa fa-check-circle text-9xl text-yellow-500" aria-hidden="true"></i> --}}
+                                <div class="flex flex-col gap-4 w-full text-lg">
+                                    <h1>{!! $setting->thanks_page[0] !!}</h1>
                                 </div>
-                                <!-- if free product is selected then show this div -->
-                                <div class="hidden mb-5" id="hiddenDiv">
-                                    <div class="text-center mb-5">
-                                        <h1 class="text-sm">Please finish the address information form, we will send
-                                            you the bonus quickly!</h1>
-                                    </div>
-                                    <div class="">
-                                        <input type="text" placeholder="Address Line 1" required id="address1"
-                                            name="address1"
-                                            class="w-full border-b-2 border-gray-200 p-2.5 focus:outline-none focus:border-yellow-300 mb-4">
-                                        <input type="text" placeholder="Address Line 2" required id="address2"
-                                            name="address2"
-                                            class="w-full border-b-2 border-gray-200 p-2.5 focus:outline-none focus:border-yellow-300 mb-4">
-                                        <div class="grid md:grid-cols-3 grid-cols-1 gap-2">
-                                            <input type="text" placeholder="City" required id="city"
-                                                name="city"
-                                                class="w-full border-b-2 border-gray-200 p-2.5 focus:outline-none focus:border-yellow-300">
-                                            <input type="text" placeholder="State" required id="State"
-                                                name="State"
-                                                class="w-full border-b-2 border-gray-200 p-2.5 focus:outline-none focus:border-yellow-300">
-                                            <input type="text" placeholder="Zipcode" required id="Zipcode"
-                                                name="Zipcode"
-                                                class="w-full border-b-2 border-gray-200 p-2.5 focus:outline-none focus:border-yellow-300">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="text-center">
-                                    <input type="checkbox" name="join" id="join" class="cursor-pointer">
-                                    <label for="join" class="text-gray-400 cursor-pointer">Join our Customers Club
-                                        to Receive Newly Released Products, Amazon Gift Card & Lifetime Warranty</label>
-                                </div>
-                                <div class="text-center text-sm my-2">
-                                    <p>wholeheartly.com is the sole owner of information collected from its customers.
-                                        We will not sell or share this information with third parties in ways different
-                                        from what is disclosed in our Privacy Policy.</p>
-                                </div>
-
-                                <div class="w-full flex items-center justify-end">
-                                    <div class="bg-yellow-400 p-2 px-6 rounded-lg hover:bg-yellow-500 cursor-pointer">
-                                        <button class="text-white uppercase">submit</button>
-                                    </div>
+                                <div class="">
+                                    <p>{!! $setting->thanks_page[1] !!}</p>
                                 </div>
                             </div>
                         </div>
@@ -401,7 +324,7 @@
 
 
 
-    <!-- script -->
+
     <script>
         //
         const ToRatingPage = (e) => {

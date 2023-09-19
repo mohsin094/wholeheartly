@@ -13,4 +13,10 @@ class Media extends Model
         'feedback_id',
         'image',
     ];
+
+
+    public function imageable()
+    {
+        return $this->morphTo();
+    }
 }

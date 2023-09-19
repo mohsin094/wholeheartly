@@ -16,7 +16,7 @@ class OrderController extends Controller
         ]);
 
         $order = Order::create($data);
-
+        session()->flash('success', 'Order added successfully');
         return response()->json(['message' => 'Order added successfully']);
     }
 
@@ -29,7 +29,7 @@ class OrderController extends Controller
         ]);
 
         $order->update($data);
-
+        session()->flash('success', 'Order updated successfully');
         return response()->json(['message' => 'Order updated successfully']);
     }
 
@@ -37,7 +37,7 @@ class OrderController extends Controller
     {
         $order = Order::find($request->order_id);
         $order->delete();
-
+        session()->flash('success', 'Order deleted successfully.');
         return response()->json(['message' => 'Order deleted successfully']);
     }
 
@@ -53,6 +53,7 @@ class OrderController extends Controller
     public function importOrders(Request $request) {
         try {
             Excel::import(new OrdersImport,$request->file);
+            session()->flash('success', 'Orders import successfully.');
             return redirect()->route('admin');
         } catch (\Exception $e) {
             return response()->json(['message' => 'Error importing orders'], 500);

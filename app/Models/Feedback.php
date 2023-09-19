@@ -18,7 +18,8 @@ class Feedback extends Model
         'comment'
     ];
 
-    public function images(){
-        return $this->hasMany(Media::class);
+    public function images()
+    {
+        return $this->morphMany(Media::class, 'imageable');
     }
 }
