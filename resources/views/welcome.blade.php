@@ -29,10 +29,25 @@
         margin: 14px 0px;
     }
 
-    .star-page-img img, video {
-    max-width: 250px;
-    max-height: 250px;
-}
+    .star-page-img img,
+    video {
+        max-width: 250px;
+        max-height: 250px;
+    }
+
+    .image-style-align-center {
+        display: flex;
+        justify-content: center;
+    }
+    .image-style-align-right {
+        display: flex;
+        justify-content: right;
+    }
+
+    .image-style-align-left {
+        display: flex;
+        justify-content: left;
+    }
 </style>
 
 <body class="antialiased overflow-hidden bg-gray-100">
@@ -51,18 +66,15 @@
                         <!--  -->
                         <div class="grid grid-cols-3 w-full items-center bg-gray-200 rounded-full">
                             <div class="rounded-l-full bg-yellow-400 text-white shadow-xl" id="YOURORDER">
-                                <h1
-                                    class="text-center md:px-2 px-0 py-3 cursor-default md:text-sm text-xs whitespace-nowrap">
+                                <h1 class="text-center md:px-2 px-0 py-3 cursor-default md:text-sm text-xs">
                                     {{ $setting->tabs_txt[0] }}</h1>
                             </div>
                             <div class="hover:bg-gray-300 " id="YOURFEEDBACK">
-                                <h1
-                                    class="text-center md:px-2 px-0 py-3 cursor-default md:text-sm text-xs whitespace-nowrap">
+                                <h1 class="text-center md:px-2 px-0 py-3 cursor-default md:text-sm text-xs">
                                     {{ $setting->tabs_txt[1] }}</h1>
                             </div>
                             <div class="hover:bg-gray-300 rounded-r-full" id="YOURBENEFITS">
-                                <h1
-                                    class="text-center md:px-2 px-0 py-3 cursor-default md:text-sm text-xs whitespace-nowrap">
+                                <h1 class="text-center md:px-2 px-0 py-3 cursor-default md:text-sm text-xs">
                                     {{ $setting->tabs_txt[2] }}</h1>
                             </div>
                         </div>
@@ -117,24 +129,24 @@
                                 </div>
                                 <!--  -->
                                 <div class="flex flex-col gap-y-2 items-start">
-                                    <div>
+                                    <div class="d-flex">
                                         <input type="radio" id="started" name="day_in_use" value="less than 7 days">
-                                        <label for="started" class="text-sm">Just started (less than 7 days)</label>
+                                        <label for="started" class="text-sm ml-2"> {!! $setting->first_tab[2] !!}</label>
                                     </div>
-                                    <div>
+                                    <div class="d-flex">
                                         <input type="radio" id="while" name="day_in_use" value="for a while">
-                                        <label for="while" class="text-sm">I've been using it for a while!</label>
+                                        <label for="while" class="text-sm ml-2"> {!! $setting->first_tab[3] !!}</label>
                                     </div>
-                                    <div>
+                                    <div class="d-flex">
                                         <input type="radio" id="more" name="day_in_use"
                                             value="more than 60 days">
-                                        <label for="more" class="text-sm">I have been using it for more than 60
-                                            days.</label><br>
+                                        <label for="more" class="text-sm ml-2">
+                                            {!! $setting->first_tab[4] !!}</label><br>
                                     </div>
                                 </div>
                                 <!--  -->
                                 <div class="">
-                                    <h1 class="text-lg">{!! $setting->first_tab[2] !!}</h1>
+                                    <h1 class="text-lg">{!! $setting->first_tab[5] !!}</h1>
                                 </div>
                                 <div class="">
                                     <div class="flex items-center space-x-3">
@@ -226,8 +238,9 @@
                             <!--  -->
                             <div class="w-full text-center mb-5">
                                 <a href="https://www.youtube.com/watch?v=PbVhPKgHi38&feature=youtu.be" target="_blank"
-                                    class="mb-4 font-medium text-gray-700 text-xl bg-yellow-100 py-3 px-5 rounded-full border-4 border-yellow-400 hover:bg-yellow-200">{!! $setting->five_star_page[1] !!}</a>
-
+                                    class="block mx-auto max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl mb-4 font-medium text-gray-700 text-xl bg-yellow-100 py-3 px-5 rounded-full border-4 border-yellow-400 hover:bg-yellow-200">
+                                    {!! $setting->five_star_page[1] !!}
+                                </a>
                             </div>
                             <div class="w-full text-center mb-3">
                                 <p class="text-xs text-yellow-500">{!! $setting->five_star_page[2] !!}</p>
@@ -252,7 +265,7 @@
                                                 </path>
                                             </g>
                                         </svg>
-                                        <span class="uppercase">upload review screenshort</span>
+                                        <span class="uppercase">{!! $setting->five_star_page[3] !!}</span>
                                     </button>
                                 </div>
                                 <!-- when image is upload show this otherwise hidden-->
@@ -263,35 +276,37 @@
                                 <!--  -->
                             </div>
                             <!--  -->
-                            <div class="slider-container">
-                                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                                    <div class="carousel-inner">
-                                        @foreach ($setting->images as $index => $item)
-                                            <div class="carousel-item active">
-                                                <img src="{{ asset('uploads/' . $item->image) }}"
-                                                    class="d-block w-100" alt="...">
-                                            </div>
-                                        @endforeach
+                            @if (isset($setting->images) && count($setting->images) > 0)
+                                <div class="slider-container">
+                                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-inner">
+                                            @foreach ($setting->images as $index => $item)
+                                                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                                                    <img src="{{ asset('uploads/' . $item->image) }}"
+                                                        class="d-block w-100" alt="...">
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <button class="carousel-control-prev" type="button"
+                                            data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button"
+                                            data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
                                     </div>
-                                    <button class="carousel-control-prev" type="button"
-                                        data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Previous</span>
-                                    </button>
-                                    <button class="carousel-control-next" type="button"
-                                        data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Next</span>
-                                    </button>
                                 </div>
-                            </div>
+                            @endif
                             <!-- it shows when you do not upload image but press next button -->
                             <div class="hidden text-center text-red-500 text-sm my-4" id="uploadErrorMessage">
                                 {!! $setting->review[0] !!}
                                 </p>
                             </div>
                             <!--  -->
-                            <div class="w-full flex items-center justify-end">
+                            <div class="w-full flex items-center justify-end mt-2">
                                 <div class="bg-gray-400 p-2 px-6 rounded-lg hover:bg-gray-500 cursor-pointer nextbutton"
                                     onclick="validateAndProceed()">
                                     <button type="submit" class="text-white uppercase">Submit</button>

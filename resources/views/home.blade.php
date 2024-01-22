@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="relative overflow-x-auto shadow-sm border border-gray-200">
-                    <table class="w-full text-sm text-left text-gray-500 text-gray-400 ">
+                    <table class="w-full text-sm text-left text-gray-500 text-gray-400">
                         <thead class="text-xs uppercase bg-gray-700 text-gray-400">
                             <tr>
                                 <th scope="col" class="px-6 py-3">
@@ -50,8 +50,11 @@
                                 <th scope="col" class="px-6 py-3">
                                     Comment
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-6 py-3 whitespace-nowrap">
                                     Picture
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Date
                                 </th>
                             </tr>
                         </thead>
@@ -77,12 +80,15 @@
                                         {{ $item->comment ?? '-' }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        <div class="flex items-center gap-4">
+                                        <div class="flex items-center gap-4 flex-wrap">
                                             @foreach ($item->images as $item)
                                                 <img src="{{ asset('uploads/' . $item->image) }}" alt="product"
                                                     class="w-10">
                                             @endforeach
                                         </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $item->created_at ?? '-' }}
                                     </td>
                                 </tr>
                             @endforeach
@@ -128,6 +134,12 @@
                                 value="{{ $setting->first_tab[1] }}">
                             <input type="text" name="first_tab[]" class="form-control inputStyle mt-2" id=""
                                 value="{{ $setting->first_tab[2] }}">
+                            <input type="text" name="first_tab[]" class="form-control inputStyle" id=""
+                                value="{{ $setting->first_tab[3] }}">
+                            <input type="text" name="first_tab[]" class="form-control inputStyle mt-2" id=""
+                                value="{{ $setting->first_tab[4] }}">
+                            <input type="text" name="first_tab[]" class="form-control inputStyle" id=""
+                                value="{{ $setting->first_tab[5] }}">
                         </div>
                         <div class="mb-4">
                             <label for="findid"><strong>4 star reviw page </strong></label><br><br>
@@ -142,6 +154,8 @@
                                 id="" value="{{ $setting->five_star_page[1] }}">
                             <input type="text" name="five_star_page[]" class="form-control inputStyle mt-2"
                                 id="" value="{{ $setting->five_star_page[2] }}">
+                            <input type="text" name="five_star_page[]" class="form-control inputStyle mt-2"
+                                id="" value="{{ $setting->five_star_page[3] }}">
                             <label for="" class="mt-2">Review Screenshot Error Message </label><br>
                             <textarea name="review[]" id="editor7" rows="3" placeholder="Change this text"
                                 class=" w-full border-b border-gray-300 p-2 focus:outline-none focus:border-yellow-400">{{ $setting->review[0] }}</textarea>
@@ -352,7 +366,7 @@
     </section>
 @endsection
 @section('script')
-<script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
     <script>
         const DashBoard = document.getElementById('dashboard');
         const OrderInfo = document.getElementById('orderinfo');
@@ -525,14 +539,53 @@
         initializeCKEditor('#editor7');
 
         ClassicEditor
-        .create( document.querySelector( '#editor4' ),{
-            ckfinder: {
-                uploadUrl: '{{route('ckeditor.upload').'?_token='.csrf_token()}}',
-            }
-        })
-        .catch( error => {
+            .create(document.querySelector('#editor4'), {
+                ckfinder: {
+                    uploadUrl: '{{ route('ckeditor.upload') . '?_token=' . csrf_token() }}',
+                },
+                alignment: {
+                    options: ['left', 'center', 'right'],
+                },
+                textAlignment: {
+                    options: ['left', 'center', 'right', 'justify']
+                },
+                image: {
+                    toolbar: [
+                        'imageTextAlternative',
+                        'imageStyle:alignLeft',
+                        'imageStyle:alignCenter',
+                        'imageStyle:alignRight',
+                        'toggleImageCaption',
+                        'imageResize'
+                    ],
+                    styles: [
+                        'alignLeft',
+                        'alignCenter',
+                        'alignRight'
+                    ],
+                    resizeOptions: [{
+                            name: 'resizeImage:original',
+                            label: 'Original',
+                            value: null
+                        },
+                        {
+                            name: 'resizeImage:50',
+                            label: '50%',
+                            value: '50'
+                        },
+                        {
+                            name: 'resizeImage:75',
+                            label: '75%',
+                            value: '75'
+                        }
+                    ]
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
 
-        } );
+
         // Add more instances as needed
 
         function openImportModal() {

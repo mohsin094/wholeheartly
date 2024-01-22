@@ -11,6 +11,7 @@ class SettingController extends Controller
 {
     public function saveSetting(Request $request)
     {
+        // dd($request->all());
         if ($request->hasFile('bg_img')) {
             $image = $request->file('bg_img');
             $filename = time() . '_' . $image->getClientOriginalName();

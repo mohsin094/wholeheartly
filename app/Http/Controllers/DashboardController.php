@@ -26,8 +26,8 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
-        $feedback = Feedback::get();
-        $order = Order::get();
+        $feedback = Feedback::orderByDesc('id')->get();
+        $order = Order::orderByDesc('id')->get();
         $setting = Setting::first();
         return view('home', compact('feedback', 'order', 'setting'));
     }
